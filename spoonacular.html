@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <form onsubmit="return addIngridient()">
+        <input type="text" id="ingridientSubmission">
+        <input type="submit" id="submit" value="submit">
+    </form>
+    <form onsubmit="getRecipe()">
+        <input type="submit" id="recipeButton" value="recipeValues">
+    </form>
+    <script type="text/javascript">
+        function addIngridient() {
+            submissionValue = document.getElementById("ingridientSubmission").value;
+            if (ingridients) {
+                ingridients.push(submissionValue);
+            }
+            return false;
+        }
+        var ingridients = [];
+        function getRecipe() {
+            event.preventDefault();
+            var ingridientsURL = ingridients.join()
+            apiKey = "60d9128af34b4f85baab35d9135e7ff3";
+            var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingridientsURL + "&number=2&apiKey=" + apiKey;
+            console.log("submitting for recipe!")
+            console.log(ingridientsURL)
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response);
+            });
+        }
+    </script>
+</body>
+
+</html>
