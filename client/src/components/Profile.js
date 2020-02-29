@@ -67,7 +67,7 @@ class Profile extends Component {
     event.preventDefault();
     const rSearch = this.state.pantry.join();
     console.log(rSearch);
-    const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${rSearch}&number=2&apiKey=60d9128af34b4f85baab35d9135e7ff3`);
+    const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${rSearch}&number=10&apiKey=60d9128af34b4f85baab35d9135e7ff3`);
     const data = await response.json();
     this.setState({ recipes: data });
     console.log(this.state.recipes)
@@ -81,11 +81,10 @@ class Profile extends Component {
         <Typography variant={"subtitle1"}>
           My ID is <b>{this.props.id}</b>
         </Typography>
-        <Typography variant={"subtitle1"}>
-          Name: <b>{this.props.activeUser.data.username}</b>
-        </Typography>
-        <Typography variant={"subtitle1"}>
-          {this.state.pantry.map((pantry, i) => <li>{pantry}<p className="deleteItem" data-value={pantry} key={i} onClick={() => { this.onDeleteItem(pantry, i) }}>X</p></li>)}
+        <h1> 
+          HELLO: <b>{this.props.activeUser.data.username}</b>,
+        </h1> <Typography variant={"subtitle1"}>
+          {this.state.pantry.map((pantry, i) => <li className="deleteItem" data-value={pantry} key={i} onClick={() => { this.onDeleteItem(pantry, i) }}>{pantry} X </li>)}
         </Typography>
         <form onSubmit={this.onSubmit}>
           <input
@@ -95,8 +94,8 @@ class Profile extends Component {
             type="text"
             placeholder="Add to pantry"
           />
-          <Button type="submit">
-            Submit Book
+          <Button type="submit" variant="contained" color="primary">
+            Add Ingridient
                 </Button>
         </form>
 
@@ -105,8 +104,8 @@ class Profile extends Component {
             </Button>
 
         <div className="App">
-          <Button type="submit" onClick={(event) => { this.CurrentPantry(event) }}>
-            Whats in pantry
+          <Button variant="contained" color="primary" type="submit" onClick={(event) => { this.CurrentPantry(event) }}>
+            Search Recipes
               </Button>
           {this.state.recipes.map(recipe => (
             <RecipeCardComponenet

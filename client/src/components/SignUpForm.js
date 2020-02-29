@@ -73,9 +73,12 @@ class SignUpForm extends React.Component {
               )}
           </Button>
         </form>
+        <Typography variant={"subtitle1"}>
+          My ID is <b>{this.props.id}</b>
+        </Typography>
       </React.Fragment>
     );
-  }
+  } 
 }
 
 export default SignUpForm;

@@ -1,6 +1,12 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
-const Profile = () => <Typography variant="h4">Home</Typography>;
+class Home extends React.Component{
+    render(){
+        return <div>
+            <h1>Welcome to Pantry</h1>
+        </div>;      
+    }
+}
 
-export default Profile;
+export default Home;

@@ -83,10 +83,9 @@ class App extends React.Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-             <Nav.Link href="/">Home
-             </Nav.Link>
-             <Nav.Link href="/login">Login</Nav.Link>
-              <Nav.Link href="/profile">Profile</Nav.Link>
+             <Nav.Link><Link to="/">Home</Link></Nav.Link>
+             <Nav.Link><Link to="/login" style={{ marginRight: 16 }}>Login</Link></Nav.Link>
+             <Nav.Link> <Link to="/profile">Profile</Link></Nav.Link>
 
               </Nav>
               </Navbar.Collapse>
@@ -99,10 +98,10 @@ class App extends React.Component {
             exact
             render={() => (
               <Wrapper>
-                <Link to="/login" style={{ marginRight: 16 }}>
+                {/* <Link to="/login" style={{ marginRight: 16 }}>
                   Login
                 </Link>
-                <Link to="/profile">Profile</Link>
+                <Link to="/profile">Profile</Link> */}
                 <Home />
               </Wrapper>
             )}
@@ -112,7 +111,8 @@ class App extends React.Component {
             exact
             render={({ history }) => (
               <Wrapper>
-                <Link to="/">Home</Link>
+                {/* <Link to="/">Home</Link>
+                <Link to="/profile">Profile</Link> */}
                 <LoginForm onSubmit={this.handleSignIn(history)} />
 
                 <ButtonToolbar>
@@ -125,7 +125,7 @@ class App extends React.Component {
                         <Popover id={`popover-positioned-${placement}`}>
                           <Popover.Title as="h3">{`${placement}`}</Popover.Title>
                           <Popover.Content>
-                            <SignUpForm onSubmit={this.handleSignUp(history)} me={me}/>
+                            <SignUpForm onSubmit={this.handleSignUp(history)} me={me} displayName={email} id={id}/>
                           </Popover.Content>
                         </Popover>
                       }
@@ -142,7 +142,7 @@ class App extends React.Component {
             exact
             render={props => (
               <Wrapper>
-                <Link to="/">Home</Link>
+                {/* <Link to="/">Home</Link> */}
                 <ProtectedProfile {...props} me={me} displayName={email} id={id} activeUser={activeUser} />
               </Wrapper>
             )}
@@ -152,7 +152,7 @@ class App extends React.Component {
             exact
             render={() => (
               <Wrapper>
-                <Link to="/">Home</Link>
+                {/* <Link to="/">Home</Link> */}
                 <Public />
               </Wrapper>
             )}
