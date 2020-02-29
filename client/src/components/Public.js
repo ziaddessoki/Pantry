@@ -21,16 +21,13 @@ const Public = () => {
     }
   
     function myCallBack(rSearch){
-            // console.log(rSearch);
             setQuery(rSearch);
             setSearch('');
     }
     console.log(recipes)
     return (
-        
         <div className="App">
             <AddIngredient  callbackFromParent={myCallBack} />
-            
             {recipes.map(recipe => (
                 <RecipeCardComponenet
                     key={recipe.title}
@@ -38,7 +35,6 @@ const Public = () => {
                     image={recipe.image}
                     id={recipe.id}
                 />
-               
             ))}
         </div>
     )

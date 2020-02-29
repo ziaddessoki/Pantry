@@ -11,6 +11,15 @@ import Public from './components/Public';
 import { fireAuth } from "./fireApi";
 import withAuthProtection from "./withAuthProtection";
 import API from '../src/utils/API';
+import SignUpForm from './components/SignUpForm';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import Overlay from 'react-bootstrap/Overlay';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
 
 const Wrapper = props => (
   <div style={{ maxWidth: 400, padding: 16, margin: "auto" }} {...props} />
@@ -34,21 +43,31 @@ class App extends React.Component {
 
 
       API.getUser(me.uid).then(d => {
-        this.setState({activeUser : d})
+        this.setState({ activeUser: d })
         // returns user info and set it to new state 
         console.log(this.state.activeUser)
       })
       this.setState({ me });
     });
-    
+
   };
 
-  
+
 
   handleSignIn = history => (email, password) => {
     return fireAuth.signInWithEmailAndPassword(email, password).then(() => {
       return history.push("/profile");
     });
+  };
+  handleSignUp = history => (email, password) => {
+    fireAuth.createUserWithEmailAndPassword(email, password).catch(function (error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+    }
+    );
+    return history.push("/profile");
   };
 
   render() {
@@ -58,6 +77,22 @@ class App extends React.Component {
     const activeUser = this.state.activeUser
     return (
       <BrowserRouter>
+
+          <Navbar bg="white" expand="lg">
+          <Navbar.Brand href="/">Pantry</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+             <Nav.Link href="/">Home
+             </Nav.Link>
+             <Nav.Link href="/login">Login</Nav.Link>
+              <Nav.Link href="/profile">Profile</Nav.Link>
+
+              </Nav>
+              </Navbar.Collapse>
+              </Navbar>
+
+
         <Switch>
           <Route
             path="/"
@@ -66,9 +101,6 @@ class App extends React.Component {
               <Wrapper>
                 <Link to="/login" style={{ marginRight: 16 }}>
                   Login
-                </Link>
-                <Link to="/public" style={{ marginRight: 16 }}>
-                  Public
                 </Link>
                 <Link to="/profile">Profile</Link>
                 <Home />
@@ -82,6 +114,26 @@ class App extends React.Component {
               <Wrapper>
                 <Link to="/">Home</Link>
                 <LoginForm onSubmit={this.handleSignIn(history)} />
+
+                <ButtonToolbar>
+                  {['Sign Up'].map(placement => (
+                    <OverlayTrigger
+                      trigger="click"
+                      key={placement}
+                      placement={placement}
+                      overlay={
+                        <Popover id={`popover-positioned-${placement}`}>
+                          <Popover.Title as="h3">{`${placement}`}</Popover.Title>
+                          <Popover.Content>
+                            <SignUpForm onSubmit={this.handleSignUp(history)} me={me}/>
+                          </Popover.Content>
+                        </Popover>
+                      }
+                    >
+                      <Button variant="primary">{placement}</Button>
+                    </OverlayTrigger>
+                  ))}
+                </ButtonToolbar>
               </Wrapper>
             )}
           />
@@ -91,7 +143,7 @@ class App extends React.Component {
             render={props => (
               <Wrapper>
                 <Link to="/">Home</Link>
-                <ProtectedProfile {...props} me={me} displayName={email} id={id} activeUser={activeUser}/>
+                <ProtectedProfile {...props} me={me} displayName={email} id={id} activeUser={activeUser} />
               </Wrapper>
             )}
           />
@@ -106,6 +158,7 @@ class App extends React.Component {
             )}
           />
         </Switch>
+
       </BrowserRouter>
     );
   }

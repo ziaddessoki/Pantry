@@ -71,7 +71,7 @@ class LoginForm extends React.Component {
                 size={16}
               />
             ) : (
-              "Submit"
+              "Login"
             )}
           </Button>
         </form>

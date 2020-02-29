@@ -27,14 +27,11 @@ const RecipeCardComponenet = ({ title, image, id }) => {
     }
 
     return (
-        <div>
             <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={image} />
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
                     <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of
-                        the card's content.
                     </Card.Text>
                     <Button onClick={getSearch} value={id} variant="primary">Get Recipe</Button>
                 </Card.Body>
@@ -57,7 +54,6 @@ const RecipeCardComponenet = ({ title, image, id }) => {
                 </Modal>
             </Card>
 
-        </div>
     )
 }
 export default RecipeCardComponenet;
