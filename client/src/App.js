@@ -39,13 +39,15 @@ class App extends React.Component {
 
   componentDidMount() {
     fireAuth.onAuthStateChanged(me => {
-      console.log(me.uid)
+      console.log(me.email)
+      API.saveUser({email:me.email, fBaseId:me.uid}).catch(err => console.log(err));
+
 
 
       API.getUser(me.uid).then(d => {
         this.setState({ activeUser: d })
         // returns user info and set it to new state 
-        console.log(this.state.activeUser)
+        // console.log(this.state.activeUser)
       })
       this.setState({ me });
     });

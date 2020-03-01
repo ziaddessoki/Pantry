@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
+import API from "../utils/API"
 
 class SignUpForm extends React.Component {
   constructor() {
@@ -24,6 +25,8 @@ class SignUpForm extends React.Component {
       onSubmit(email, password);
     }
     alert("thank you for signing up, now you can login")
+    console.log(this.state.email, this.props.id)
+    // API.saveUser({email:this.state.email, fBaseId:this.props.id}).catch(err => console.log(err));
   };
 
   handleChange = key => e => {
