@@ -22,8 +22,8 @@ export default {
     return axios.post("/user/addPantry/"+id, newPantry);
   },
 
-  addFav: function(id) {
-    return axios.post("/user/addFav/"+id);
+  addFav: function(id,newFav) {
+    return axios.post("/user/addFav/"+id,newFav);
   },
 
   deletePantry: function(id, newPantry){

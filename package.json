@@ -22,11 +22,16 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-brands-svg-icons": "^5.12.1",
+    "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "axios": "^0.18.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "if-env": "^1.0.4",
     "mongoose": "^5.9.1",
-    "axios": "^0.18.0",
-    "if-env": "^1.0.4"
+    "oauth": "^0.9.15",
+    "the-noun-project": "^2.1.0"
   }
 }

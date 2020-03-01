@@ -22,7 +22,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
 const Wrapper = props => (
-  <div style={{ maxWidth: 400, padding: 16, margin: "auto" }} {...props} />
+  <div style={{  padding: 16, margin: "auto" }} {...props} />
 );
 
 const ProtectedProfile = withAuthProtection("/login")(Profile);
@@ -35,6 +35,17 @@ class App extends React.Component {
       me: fireAuth.currentUser,
       activeUser: {}
     };
+  }
+
+  isSomeoneSignedIn=()=>{
+    if(this.state.activeUser){
+      return(
+      <ProtectedProfile {...this.state.props} me={this.state.me} displayName={this.state.email} id={this.state.id} activeUser={this.state.activeUser} />      )
+    }else{
+      return (
+        <ProtectedProfile />    
+      )
+    }
   }
 
   componentDidMount() {
@@ -127,7 +138,7 @@ class App extends React.Component {
                         <Popover id={`popover-positioned-${placement}`}>
                           <Popover.Title as="h3">{`${placement}`}</Popover.Title>
                           <Popover.Content>
-                            <SignUpForm onSubmit={this.handleSignUp(history)} me={me} displayName={email} id={id}/>
+                            <SignUpForm onSubmit={this.handleSignUp(history)} />
                           </Popover.Content>
                         </Popover>
                       }
@@ -145,6 +156,7 @@ class App extends React.Component {
             render={props => (
               <Wrapper>
                 {/* <Link to="/">Home</Link> */}
+                {/* {this.isSomeoneSignedIn()} */}
                 <ProtectedProfile {...props} me={me} displayName={email} id={id} activeUser={activeUser} />
               </Wrapper>
             )}

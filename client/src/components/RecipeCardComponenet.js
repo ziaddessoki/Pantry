@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Modal } from "react-bootstrap";
 import InstructionsComponent from "./InstructionsComponent";
+import API from '../utils/API';
 
-const RecipeCardComponenet = ({ title, image, id }) => {
+
+
+
+const RecipeCardComponenet = ({ title, image, id, userID }) => {
     const [recipesInstructions, setRecipeInstructions] = useState([])
     const [query, setQuery] = useState('')
     const [show, setShow] = useState(false);
@@ -26,6 +30,14 @@ const RecipeCardComponenet = ({ title, image, id }) => {
         handleShow();
     }
 
+    const saveRecipe = () => {
+        API.addFav(userID, {favRecipes:recipesInstructions.instructions}).catch(err => console.log(err));
+        console.log(userID)
+        console.log(recipesInstructions.instructions)
+    } 
+
+    
+
     return (
             <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={image} />
@@ -47,7 +59,7 @@ const RecipeCardComponenet = ({ title, image, id }) => {
                         <Button variant="secondary" onClick={handleClose}>
                             Close
           </Button>
-                        <Button variant="primary" onClick={handleClose}>
+                        <Button variant="primary" onClick={saveRecipe}>
                             Save Changes
           </Button>
                     </Modal.Footer>

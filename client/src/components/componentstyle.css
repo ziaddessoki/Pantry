@@ -1,0 +1,8 @@
+.jumbotronContainer{
+    float: left;
+    width: 1000px;
+}
+.jumbotron{
+    image : url("../images/pantryImg.jpg");
+    display: flex;
+}

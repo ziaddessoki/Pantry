@@ -26,7 +26,6 @@ class SignUpForm extends React.Component {
     }
     alert("thank you for signing up, now you can login")
     console.log(this.state.email, this.props.id)
-    // API.saveUser({email:this.state.email, fBaseId:this.props.id}).catch(err => console.log(err));
   };
 
   handleChange = key => e => {

@@ -6,11 +6,15 @@ import Typography from "@material-ui/core/Typography";
 import { fireAuth } from "../fireApi";
 import API from '../utils/API';
 import Public from "./Public"
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { findIconDefinition, icon } from '@fortawesome/fontawesome-svg-core'
 
 class Profile extends Component {
   constructor(props) {
     console.log("props that have ID" + props);
-    super(props);
+    super(props)
     this.state = {
       recipes: [''],
       _id: this.props.activeUser.data._id,
@@ -48,6 +52,14 @@ class Profile extends Component {
         this.setState({ pantry: dontMessWithState })
       })
       .catch(err => console.log(err));
+    // console.log(userPantry.newPantry)
+    // const iconVariable = userPantry.newPantry
+    // library.add(fas, fab)
+    // const glasses = findIconDefinition({ prefix: 'fas', iconName: iconVariable })
+    // const i = icon(glasses)
+    // console.log(glasses)
+    // console.log(i)
+    // console.log(Array.from(i.node).map(n => document.body.appendChild(n)))
   };
 
   onDeleteItem = (pantry, i) => {
@@ -71,6 +83,7 @@ class Profile extends Component {
     const data = await response.json();
     this.setState({ recipes: data });
     console.log(this.state.recipes)
+
   }
   render() {
     return (
@@ -81,11 +94,16 @@ class Profile extends Component {
         <Typography variant={"subtitle1"}>
           My ID is <b>{this.props.id}</b>
         </Typography>
-        <h1> 
+        <h1>
           HELLO: <b>{this.props.activeUser.data.username}</b>,
         </h1> <Typography variant={"subtitle1"}>
           {this.state.pantry.map((pantry, i) => <li className="deleteItem" data-value={pantry} key={i} onClick={() => { this.onDeleteItem(pantry, i) }}>{pantry} X </li>)}
         </Typography>
+
+        <Typography variant={"subtitle1"}> THESE ARE UR FAVE RECIPES
+          {this.state.favRecipes.map((favRecipes, i) => <li className="deleteItem" data-value={favRecipes} key={i} onClick={() => { this.onDeleteItem(favRecipes, i) }}>{favRecipes} X </li>)}
+        </Typography>
+
         <form onSubmit={this.onSubmit}>
           <input
             value={this.state.value}
@@ -109,6 +127,7 @@ class Profile extends Component {
               </Button>
           {this.state.recipes.map(recipe => (
             <RecipeCardComponenet
+              userID={this.state._id}
               key={recipe.title}
               title={recipe.title}
               image={recipe.image}
