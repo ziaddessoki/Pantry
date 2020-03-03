@@ -30,8 +30,8 @@ export default {
     return axios.post("/user/deletePantry/"+id , newPantry);
   },
 
-  deleteFav: function(id){
-    return axios.post("/deleteFav/"+id);
+  deleteFav: function(id,newFav){
+    return axios.post("/user/deleteFav/"+id,newFav);
   }
 
 

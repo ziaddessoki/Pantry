@@ -22,6 +22,7 @@ const RecipeCardComponenet = ({ title, image, id, userID }) => {
         const response = await fetch(`https://api.spoonacular.com/recipes/${query}/information?includeNutrition=false&apiKey=${API_KEY}`);
         const data = await response.json();
         setRecipeInstructions(data);
+        console.log(data);
     }
 
     const getSearch = e => {
@@ -31,7 +32,15 @@ const RecipeCardComponenet = ({ title, image, id, userID }) => {
     }
 
     const saveRecipe = () => {
-        API.addFav(userID, {favRecipes:recipesInstructions.instructions}).catch(err => console.log(err));
+
+        
+
+        API.addFav(userID, {favRecipes:{
+            title: title,
+            image: image,
+            recipesInstructions:recipesInstructions.instructions,
+
+        }}).catch(err => console.log(err));
         console.log(userID)
         console.log(recipesInstructions.instructions)
     } 

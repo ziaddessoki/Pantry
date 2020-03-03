@@ -57,8 +57,7 @@ class App extends React.Component {
 
       API.getUser(me.uid).then(d => {
         this.setState({ activeUser: d })
-        // returns user info and set it to new state 
-        // console.log(this.state.activeUser)
+        
       })
       this.setState({ me });
     });
@@ -83,12 +82,17 @@ class App extends React.Component {
     return history.push("/profile");
   };
 
+  onLogOut() {
+    window.location = "/"
+  }
+
   render() {
     const { me } = this.state;
     const email = _.get(me, "email");
     const id = _.get(me, "uid");
     const activeUser = this.state.activeUser
     return (
+      
       <BrowserRouter>
 
           <Navbar bg="white" expand="lg">
@@ -100,7 +104,11 @@ class App extends React.Component {
              <Nav.Link><Link to="/login" style={{ marginRight: 16 }}>Login</Link></Nav.Link>
              <Nav.Link> <Link to="/profile">Profile</Link></Nav.Link>
 
+
               </Nav>
+              <Button variant={"contained"} onClick={() => { fireAuth.signOut(); this.onLogOut() }} >
+          Logout
+            </Button>
               </Navbar.Collapse>
               </Navbar>
 
