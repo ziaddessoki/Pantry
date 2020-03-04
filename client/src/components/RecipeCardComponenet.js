@@ -49,7 +49,7 @@ const RecipeCardComponenet = ({ title, image, id, userID }) => {
     
 
     return (
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: '18rem', backgroundColor:'#cd9093',margin:"1%", display:"inline-block", textAlign:"center"}}>
                 <Card.Img variant="top" src={image} />
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>

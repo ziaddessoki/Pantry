@@ -91,7 +91,7 @@ class Profile extends Component {
     const rSearch = this.state.pantry.join();
     console.log(rSearch);
     const response = await fetch(
-      `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${rSearch}&number=10&apiKey=60d9128af34b4f85baab35d9135e7ff3`
+      `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${rSearch}&number=9&apiKey=60d9128af34b4f85baab35d9135e7ff3`
     );
     const data = await response.json();
     this.setState({ recipes: data });
@@ -141,7 +141,7 @@ class Profile extends Component {
               type="text"
               placeholder="Add to pantry"
             />
-            <Button type="submit" input variant="contained" style={{fontFamily: "Bradley Hand, cursive",backgroundColor: "#cd9093", marginTop:"2%",borderRadius:"6%",}}>
+            <Button type="submit" input variant="contained" style={{fontFamily: "Bradley Hand, cursive",backgroundColor: "#cd9093", marginTop:"2%",borderRadius:"6%"}}>
               Add Ingridient
             </Button>
           </form>
@@ -166,9 +166,9 @@ class Profile extends Component {
           ))}
         </aside>
 
-        <div style={{width:"800px", backgroundColor:"#bc7",marginLeft:"20%",borderRadius:"12%",}}>
+        <div style={{width:"900px", backgroundColor:"#bc7",marginLeft:"20%",borderRadius:"12%", textAlign:"center", overflow:"scroll"}}>
           <Button
-          style={{position:"static", marginLeft:"40%",textAlign:"center", fontFamily: "Bradley Hand, cursive",backgroundColor: "#cd9093",borderRadius:"6%", }}
+          style={{position:"static", marginLeft:"60%",textAlign:"center", fontFamily: "Bradley Hand, cursive",backgroundColor: "#cd9093",borderRadius:"6%", marginRight:"10%" }}
      
             variant="contained"
             color="primary"
@@ -193,20 +193,25 @@ class Profile extends Component {
             
           ))}
         </div>
-        <div style={{backgroundColor:"red", width:"400px", display:"inline-block"}}>
-          THESE ARE UR FAVE RECIPES
+        <div style={{backgroundColor:"#bc7", width:"600px", display:"inline-block",fontFamily: "Bradley Hand, cursive",marginTop:"20%"}}>
+          <h3 style={{textAlign:"center",textDecoration:"underline"}}>Saved Recipes</h3>
           {this.state.favRecipes.map((favRecipes, i) => (
-            <div className="favorite" data-value={favRecipes} key={i}>
-              {favRecipes.title} <br />
-              {favRecipes.recipesInstructions}
-              <img src={favRecipes.image}></img>
+            <div className="favorite" data-value={favRecipes} key={i} >
+              <img style={{textAlign:"center", borderRadius:"10%",marginLeft:"23%"}} src={favRecipes.image}></img>
+              <h4 style={{textAlign:"center"}}>{favRecipes.title} </h4><br />
+              <p style={{textAlign:"center", margin:"3%"}}> {favRecipes.recipesInstructions}</p>
               <Button
                 onClick={() => {
                   this.onDeleteRecipe(favRecipes.title, i);
                 }}
               >
-                X
+                 <img
+                src="https://image.flaticon.com/icons/svg/1345/1345874.svg"
+                height="50px"
+                width="50px"
+              ></img>{" "}
               </Button>
+              <hr></hr>
             </div>
           ))}
         </div>
