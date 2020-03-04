@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/finalproject3/static/css/main.d1b05096.chunk.css",
-    "main.js": "/finalproject3/static/js/main.51bf24ca.chunk.js",
-    "main.js.map": "/finalproject3/static/js/main.51bf24ca.chunk.js.map",
-    "runtime-main.js": "/finalproject3/static/js/runtime-main.61b1ed58.js",
-    "runtime-main.js.map": "/finalproject3/static/js/runtime-main.61b1ed58.js.map",
-    "static/js/2.b3611cfd.chunk.js": "/finalproject3/static/js/2.b3611cfd.chunk.js",
-    "static/js/2.b3611cfd.chunk.js.map": "/finalproject3/static/js/2.b3611cfd.chunk.js.map",
+    "main.css": "/finalproject3/static/css/main.c65d3fee.chunk.css",
+    "main.js": "/finalproject3/static/js/main.d3d65045.chunk.js",
+    "main.js.map": "/finalproject3/static/js/main.d3d65045.chunk.js.map",
+    "runtime-main.js": "/finalproject3/static/js/runtime-main.72b8eb93.js",
+    "runtime-main.js.map": "/finalproject3/static/js/runtime-main.72b8eb93.js.map",
+    "static/js/2.45f7e91c.chunk.js": "/finalproject3/static/js/2.45f7e91c.chunk.js",
+    "static/js/2.45f7e91c.chunk.js.map": "/finalproject3/static/js/2.45f7e91c.chunk.js.map",
     "index.html": "/finalproject3/index.html",
-    "precache-manifest.7ab0a3473cd0750835365deab21cbc77.js": "/finalproject3/precache-manifest.7ab0a3473cd0750835365deab21cbc77.js",
+    "precache-manifest.307c69af62fecec72f4b7e17c00044a6.js": "/finalproject3/precache-manifest.307c69af62fecec72f4b7e17c00044a6.js",
     "service-worker.js": "/finalproject3/service-worker.js",
-    "static/css/main.d1b05096.chunk.css.map": "/finalproject3/static/css/main.d1b05096.chunk.css.map",
-    "static/js/2.b3611cfd.chunk.js.LICENSE.txt": "/finalproject3/static/js/2.b3611cfd.chunk.js.LICENSE.txt",
-    "static/media/logo.svg": "/finalproject3/static/media/logo.5d5d9eef.svg"
+    "static/css/main.c65d3fee.chunk.css.map": "/finalproject3/static/css/main.c65d3fee.chunk.css.map",
+    "static/js/2.45f7e91c.chunk.js.LICENSE.txt": "/finalproject3/static/js/2.45f7e91c.chunk.js.LICENSE.txt",
+    "static/media/componentstyle.css": "/finalproject3/static/media/pantryImg.a31df628.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.61b1ed58.js",
-    "static/js/2.b3611cfd.chunk.js",
-    "static/css/main.d1b05096.chunk.css",
-    "static/js/main.51bf24ca.chunk.js"
+    "static/js/runtime-main.72b8eb93.js",
+    "static/js/2.45f7e91c.chunk.js",
+    "static/css/main.c65d3fee.chunk.css",
+    "static/js/main.d3d65045.chunk.js"
   ]
 }
