@@ -62,8 +62,9 @@ class SignUpForm extends React.Component {
             type={"submit"}
             fullWidth
             variant={"contained"}
-            color={"primary"}
+            style={{fontfamily:"Bradley Hand, cursive",backgroundColor:"#cd9093"}}
           >
+          
             {submitting ? (
               <CircularProgress
                 style={{ color: "#fff" }}

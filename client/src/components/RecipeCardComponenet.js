@@ -12,14 +12,15 @@ const RecipeCardComponenet = ({ title, image, id, userID }) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const API_KEY = process.env.REACT_APP_SPOONACULAR_API_KEY;
+    // const API_KEY = process.env.REACT_APP_SPOONACULAR_API_KEY;
 
     useEffect(() => {
         getRecipesInstructions();
     }, [query]);
 
     const getRecipesInstructions = async () => {
-        const response = await fetch(`https://api.spoonacular.com/recipes/${query}/information?includeNutrition=false&apiKey=${API_KEY}`);
+        const response = await fetch(`https://api.spoonacular.com/recipes/${query}/information?includeNutrition=false&apiKey=033ca393208146a0977e6ee214636992
+        `);
         const data = await response.json();
         setRecipeInstructions(data);
         console.log(data);

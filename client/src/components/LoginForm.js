@@ -33,15 +33,25 @@ class LoginForm extends React.Component {
     const { email, password, submitting } = this.state;
     return (
       <React.Fragment>
-        <Typography variant="h5" style={{ marginBottom: 24 }}>
-          Login
+        <Typography variant="h5" style={{textAlign:"center",  fontFamily:"Bradley Hand, cursive", fontSize:"20pt", marginTop:"12%", }}>
+          Please Login or Create A New Account
         </Typography>
         <form
-          style={{ display: "flex", flexDirection: "column" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "400px",
+            backgroundColor: "#bc7",
+            borderRadius: "6%",
+            marginLeft:"36%",
+            // marginTop:"12%",
+          }}
           onSubmit={this.handleSubmit}
         >
           <TextField
-            style={{ marginBottom: 24 }}
+            style={{ 
+              margin:24,
+              }}
             variant={"outlined"}
             required
             type={"email"}
@@ -50,7 +60,7 @@ class LoginForm extends React.Component {
             onChange={this.handleChange("email")}
           />
           <TextField
-            style={{ marginBottom: 24 }}
+            style={{ margin: 24, }}
             variant={"outlined"}
             required
             type={"password"}
@@ -59,10 +69,17 @@ class LoginForm extends React.Component {
             onChange={this.handleChange("password")}
           />
           <Button
+          style={{
+            fontFamily:"Bradley Hand, cursive", fontSize:"16pt",
+            backgroundColor: "#cd9093",
+            marginBottom:"3%",
+            marginLeft:"12%",
+            width:"300px",
+           
+
+           }}
             type={"submit"}
-            fullWidth
             variant={"contained"}
-            color={"primary"}
           >
             {submitting ? (
               <CircularProgress
