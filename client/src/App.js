@@ -1,28 +1,28 @@
-import React from 'react';
+import React from "react";
 import ReactDOM from "react-dom";
 import _ from "lodash";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
-import './App.css';
-import Home from './components/Home';
-import Profile from './components/Profile';
-import LoginForm from './components/LoginForm';
-import Public from './components/Public';
+import "./App.css";
+import Home from "./components/Home";
+import Profile from "./components/Profile";
+import LoginForm from "./components/LoginForm";
+import Public from "./components/Public";
 import { fireAuth } from "./fireApi";
 import withAuthProtection from "./withAuthProtection";
-import API from '../src/utils/API';
-import SignUpForm from './components/SignUpForm';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import Overlay from 'react-bootstrap/Overlay';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
+import API from "../src/utils/API";
+import SignUpForm from "./components/SignUpForm";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import ButtonToolbar from "react-bootstrap/ButtonToolbar";
+import Overlay from "react-bootstrap/Overlay";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Popover from "react-bootstrap/Popover";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 
 const Wrapper = props => (
-  <div style={{  padding: 16, margin: "auto" }} {...props} />
+  <div style={{ maxWidth: "100%", padding: 16, margin: "auto" }} {...props} />
 );
 
 const ProtectedProfile = withAuthProtection("/login")(Profile);
@@ -37,34 +37,35 @@ class App extends React.Component {
     };
   }
 
-  isSomeoneSignedIn=()=>{
-    if(this.state.activeUser){
-      return(
-      <ProtectedProfile {...this.state.props} me={this.state.me} displayName={this.state.email} id={this.state.id} activeUser={this.state.activeUser} />      )
-    }else{
+  isSomeoneSignedIn = () => {
+    if (this.state.activeUser) {
       return (
-        <ProtectedProfile />    
-      )
+        <ProtectedProfile
+          {...this.state.props}
+          me={this.state.me}
+          displayName={this.state.email}
+          id={this.state.id}
+          activeUser={this.state.activeUser}
+        />
+      );
+    } else {
+      return <ProtectedProfile />;
     }
-  }
+  };
 
   componentDidMount() {
     fireAuth.onAuthStateChanged(me => {
-      console.log(me.email)
-      API.saveUser({email:me.email, fBaseId:me.uid}).catch(err => console.log(err));
-
-
+      console.log(me.email);
+      API.saveUser({ email: me.email, fBaseId: me.uid }).catch(err =>
+        console.log(err)
+      );
 
       API.getUser(me.uid).then(d => {
-        this.setState({ activeUser: d })
-        
-      })
+        this.setState({ activeUser: d });
+      });
       this.setState({ me });
     });
-
-  };
-
-
+  }
 
   handleSignIn = history => (email, password) => {
     return fireAuth.signInWithEmailAndPassword(email, password).then(() => {
@@ -72,46 +73,97 @@ class App extends React.Component {
     });
   };
   handleSignUp = history => (email, password) => {
-    fireAuth.createUserWithEmailAndPassword(email, password).catch(function (error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // ...
-    }
-    );
+    fireAuth
+      .createUserWithEmailAndPassword(email, password)
+      .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+      });
     return history.push("/profile");
   };
 
   onLogOut() {
-    window.location = "/"
+    window.location = "/";
   }
 
   render() {
     const { me } = this.state;
     const email = _.get(me, "email");
     const id = _.get(me, "uid");
-    const activeUser = this.state.activeUser
+    const activeUser = this.state.activeUser;
     return (
-      
       <BrowserRouter>
-
-          <Navbar bg="white" expand="lg">
-          <Navbar.Brand href="/">Pantry</Navbar.Brand>
+        <Navbar expand="lg" style={{ backgroundColor: "#cd9093" }}>
+          <Navbar.Brand
+            style={{ fontFamily: "Bradley Hand, cursive", fontSize: "30pt" }}
+            href="/"
+          >
+            Pantry
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-             <Nav.Link><Link to="/">Home</Link></Nav.Link>
-             <Nav.Link><Link to="/login" style={{ marginRight: 16 }}>Login</Link></Nav.Link>
-             <Nav.Link> <Link to="/profile">Profile</Link></Nav.Link>
-
-
-              </Nav>
-              <Button variant={"contained"} onClick={() => { fireAuth.signOut(); this.onLogOut() }} >
-          Logout
+            <Nav className="mr-auto">
+              <Nav.Link>
+                <Link
+                  to="/"
+                  style={{
+                    fontFamily: "Bradley Hand, cursive",
+                    fontSize: "18pt",
+                    textDecorationColor: "#bc7",
+                    color: "black"
+                  }}
+                >
+                  Home
+                </Link>
+              </Nav.Link>
+              <Nav.Link>
+                <Link
+                  to="/login"
+                  style={{
+                    fontFamily: "Bradley Hand, cursive",
+                    fontSize: "18pt",
+                    textDecorationColor: "#bc7",
+                    color: "black"
+                  }}
+                >
+                  Login
+                </Link>
+              </Nav.Link>
+              <Nav.Link>
+                {" "}
+                <Link
+                  to="/profile"
+                  style={{
+                    fontFamily: "Bradley Hand, cursive",
+                    fontSize: "18pt",
+                    textDecorationColor: "#bc7",
+                    color: "black"
+                  }}
+                >
+                  Profile
+                </Link>
+              </Nav.Link>
+            </Nav>
+            <Button
+              variant={"contained"}
+              onClick={() => {
+                fireAuth.signOut();
+                this.onLogOut();
+              }}
+              style={{
+                marginLeft: "45%",
+                fontFamily: "Bradley Hand, cursive",
+                fontSize: "18pt",
+                textDecorationColor: "#bc7",
+                color: "black"
+              }}
+            >
+              Logout
             </Button>
-              </Navbar.Collapse>
-              </Navbar>
-
+          </Navbar.Collapse>
+        </Navbar>
 
         <Switch>
           <Route
@@ -136,22 +188,46 @@ class App extends React.Component {
                 <Link to="/profile">Profile</Link> */}
                 <LoginForm onSubmit={this.handleSignIn(history)} />
 
-                <ButtonToolbar>
-                  {['Sign Up'].map(placement => (
+                <ButtonToolbar style={{
+                    marginLeft: "18%",
+                    marginLeft: "43%",
+                    fontfamily: "Bradley Hand, cursive"
+                  }}>
+                  {["Sign Up"].map(placement => (
                     <OverlayTrigger
                       trigger="click"
                       key={placement}
                       placement={placement}
                       overlay={
-                        <Popover id={`popover-positioned-${placement}`}>
-                          <Popover.Title as="h3">{`${placement}`}</Popover.Title>
-                          <Popover.Content>
-                            <SignUpForm onSubmit={this.handleSignUp(history)} />
+                        <Popover
+                          style={{ color: "black", backgroundColor: "#bc7" }}
+                          id={`popover-positioned-${placement}`}
+                        >
+                          <Popover.Title
+                            style={{ fontfamily: "Bradley Hand, cursive" }}
+                            as="h3"
+                          >{`${placement}`}</Popover.Title>
+                          <Popover.Content
+                            style={{ fontfamily: "Bradley Hand, cursive" }}
+                          >
+                            <SignUpForm
+                              onSubmit={this.handleSignUp(history)}
+                              style={{ fontfamily: "Bradley Hand, cursive" }}
+                            />
                           </Popover.Content>
                         </Popover>
                       }
                     >
-                      <Button variant="primary">{placement}</Button>
+                      <Button
+                        style={{
+                          backgroundColor: "#cd9093",
+                          fontfamily: "Bradley Hand, cursive",
+                          marginLeft: "7%"
+                        }}
+                        variant="primary"
+                      >
+                        {placement}
+                      </Button>
                     </OverlayTrigger>
                   ))}
                 </ButtonToolbar>
@@ -165,7 +241,13 @@ class App extends React.Component {
               <Wrapper>
                 {/* <Link to="/">Home</Link> */}
                 {/* {this.isSomeoneSignedIn()} */}
-                <ProtectedProfile {...props} me={me} displayName={email} id={id} activeUser={activeUser} />
+                <ProtectedProfile
+                  {...props}
+                  me={me}
+                  displayName={email}
+                  id={id}
+                  activeUser={activeUser}
+                />
               </Wrapper>
             )}
           />
@@ -180,7 +262,6 @@ class App extends React.Component {
             )}
           />
         </Switch>
-
       </BrowserRouter>
     );
   }
