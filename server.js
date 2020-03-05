@@ -1,18 +1,17 @@
 const express = require ("express");
 const cors = require ("cors");
 const mongoose = require ('mongoose');
+const path = require("path")
 
 require("dotenv").config();
 
 const app = express();
-const port = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000;
 
 app.use(cors());
 app.use(express.json());
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
-  }
+
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri ,{useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
@@ -26,7 +25,15 @@ const userRouter = require ('./routes/user');
 
 app.use('/user', userRouter);
 
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
 
-app.listen(port,() => {
-    console.log(`App listening on PORT ${port}`);
+    app.get('*',(req,res)=>{
+        res.sendFile(path.join(__dirname,"client","build","index.html"));
+    })
+  }
+
+
+app.listen(PORT,() => {
+    console.log(`App listening on PORT ${PORT}`);
 })
