@@ -36,3 +36,4 @@ Pantry is a MERN stack web aplication, that allows its users create a profile an
 - Zee (Ziad) Eldesouky- https://github.com/ziaddessoki
 - Eric Max Valdivia - https://github.com/Ericv0801
 
+
