@@ -55,22 +55,22 @@ const RecipeCardComponenet = ({ title, image, id, userID }) => {
                     <Card.Title>{title}</Card.Title>
                     <Card.Text>
                     </Card.Text>
-                    <Button onClick={getSearch} value={id} variant="primary">Get Recipe</Button>
+                    <Button onClick={getSearch} value={id} style={{backgroundColor:'#bc7',color:'black',fontFamily: "Bradley Hand, cursive"}} >Get Recipe Instructions</Button>
                 </Card.Body>
 
-                <Modal show={show} onHide={handleClose}>
+                <Modal show={show} onHide={handleClose} style={{color:'black',fontFamily: "Bradley Hand, cursive"}}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Instructions for: {title}</Modal.Title>
+                        <Modal.Title >Instructions for: {title}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <InstructionsComponent instructions={recipesInstructions.instructions} />
+                        <InstructionsComponent style={{backgroundColor:'#bc7',color:'black',fontFamily: "Bradley Hand, cursive"}} instructions={recipesInstructions.instructions} />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
                             Close
           </Button>
                         <Button variant="primary" onClick={saveRecipe}>
-                            Save Changes
+                            Save Recipe
           </Button>
                     </Modal.Footer>
                 </Modal>

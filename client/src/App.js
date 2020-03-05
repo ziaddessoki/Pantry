@@ -1,8 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import _ from "lodash";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-import Typography from "@material-ui/core/Typography";
 import "./App.css";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
@@ -12,10 +10,8 @@ import { fireAuth } from "./fireApi";
 import withAuthProtection from "./withAuthProtection";
 import API from "../src/utils/API";
 import SignUpForm from "./components/SignUpForm";
-import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
-import Overlay from "react-bootstrap/Overlay";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import Navbar from "react-bootstrap/Navbar";
@@ -77,8 +73,8 @@ class App extends React.Component {
       .createUserWithEmailAndPassword(email, password)
       .catch(function(error) {
         // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        // var errorCode = error.code;
+        // var errorMessage = error.message;
         // ...
       });
     return history.push("/profile");
