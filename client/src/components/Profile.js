@@ -5,6 +5,7 @@ import AddIngredient from "./AddIngredient"
 import Typography from "@material-ui/core/Typography";
 import { fireAuth } from "../fireApi";
 import API from '../utils/API';
+import "./Profile.css";
 // import Public from "./Public"
 // import { library } from '@fortawesome/fontawesome-svg-core'
 // import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -41,7 +42,7 @@ class Profile extends Component {
 // Addind to the Pantry
   onSubmit = (event) => {
     event.preventDefault()
-    event.target.reset();
+    this.setState({value:""})
     
     const userPantry = {
       id: this.state._id,
@@ -57,11 +58,12 @@ class Profile extends Component {
       .catch(err => console.log(err));
   };
 
-  //add to Fav on UI
-  // onadd =()=>{
-  //   let dontMessWithState = new Array(...this.state.favRecipes)
-  //   dontMessWithState.push(userPantry.newPantry)
-  // }
+  // add to Fav on UI
+  onAdd =()=>{
+    console.log(this.props.recipesInstructions)
+    // let dontMessWithState = new Array(...this.state.favRecipes)
+    // dontMessWithState.push(userPantry.newPantry)
+  }
 
   
 
@@ -123,6 +125,18 @@ class Profile extends Component {
         <Typography variant={"subtitle1"}>
           {this.state.pantry.map((pantry, i) => <li className="deleteItem" data-value={pantry} key={i} >{pantry} <Button onClick={() => { this.onDeleteItem(pantry, i) }}>X</Button> </li>)}
         </Typography>
+        <form onSubmit={this.onSubmit}>
+          <input
+            value={this.state.value}
+            onChange={this.onChange}
+            name="pantry"
+            type="text"
+            placeholder="Add to pantry"
+          />
+          <Button type="submit" variant="contained" color="primary">
+            Add Ingridient
+                </Button>
+        </form>
 
         <Typography variant={"subtitle1"}> THESE ARE UR FAVE RECIPES
           {this.state.favRecipes.map((favRecipes, i) =>
@@ -136,18 +150,7 @@ class Profile extends Component {
           </div>)}
         </Typography>
 
-        <form onSubmit={this.onSubmit}>
-          <input
-            value={this.state.value}
-            onChange={this.onChange}
-            name="pantry"
-            type="text"
-            placeholder="Add to pantry"
-          />
-          <Button type="submit" variant="contained" color="primary">
-            Add Ingridient
-                </Button>
-        </form>
+       
 
         <Button variant={"contained"} onClick={() => { fireAuth.signOut(); this.onLogOut() }} >
           Logout

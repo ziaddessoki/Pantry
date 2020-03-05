@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import _ from "lodash";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+
 import Typography from "@material-ui/core/Typography";
 import './App.css';
 import Home from './components/Home';
@@ -114,15 +115,13 @@ class App extends React.Component {
 
 
         <Switch>
+        
           <Route
             path="/"
             exact
             render={() => (
               <Wrapper>
-                {/* <Link to="/login" style={{ marginRight: 16 }}>
-                  Login
-                </Link>
-                <Link to="/profile">Profile</Link> */}
+              
                 <Home />
               </Wrapper>
             )}
@@ -132,8 +131,7 @@ class App extends React.Component {
             exact
             render={({ history }) => (
               <Wrapper>
-                {/* <Link to="/">Home</Link>
-                <Link to="/profile">Profile</Link> */}
+                
                 <LoginForm onSubmit={this.handleSignIn(history)} />
 
                 <ButtonToolbar>
@@ -160,25 +158,26 @@ class App extends React.Component {
           />
           <Route
             path="/profile"
+            
             exact
             render={props => (
               <Wrapper>
-                {/* <Link to="/">Home</Link> */}
-                {/* {this.isSomeoneSignedIn()} */}
+            
                 <ProtectedProfile {...props} me={me} displayName={email} id={id} activeUser={activeUser} />
+
               </Wrapper>
             )}
           />
-          <Route
+          {/* <Route
             path="/public"
             exact
             render={() => (
               <Wrapper>
                 {/* <Link to="/">Home</Link> */}
-                <Public />
-              </Wrapper>
+                {/* <Public />
+              </Wrapper> */}
             )}
-          />
+          /> */}
         </Switch>
 
       </BrowserRouter>

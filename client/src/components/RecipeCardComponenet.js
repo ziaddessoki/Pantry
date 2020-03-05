@@ -5,7 +5,6 @@ import API from '../utils/API';
 
 
 
-
 const RecipeCardComponenet = ({ title, image, id, userID }) => {
     const [recipesInstructions, setRecipeInstructions] = useState([])
     const [query, setQuery] = useState('')
@@ -34,6 +33,9 @@ const RecipeCardComponenet = ({ title, image, id, userID }) => {
     const saveRecipe = () => {
 
         
+        window.location = "/profile"
+        
+        
 
         API.addFav(userID, {favRecipes:{
             title: title,
@@ -44,6 +46,12 @@ const RecipeCardComponenet = ({ title, image, id, userID }) => {
         console.log(userID)
         console.log(recipesInstructions.instructions)
     } 
+
+    // const routeChange=()=> {
+    //     let path = `/profile`;
+    //     let history = useHistory();
+    //     history.push(path);
+    //   }
 
     
 
@@ -68,7 +76,7 @@ const RecipeCardComponenet = ({ title, image, id, userID }) => {
                         <Button variant="secondary" onClick={handleClose}>
                             Close
           </Button>
-                        <Button variant="primary" onClick={saveRecipe}>
+                        <Button variant="primary" onClick={saveRecipe} >
                             Save Changes
           </Button>
                     </Modal.Footer>
