@@ -1,7 +1,11 @@
 import React from "react";
+<<<<<<< HEAD
 // import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Card, Accordion, Button } from "react-bootstrap";
 import { fontFamily } from "@material-ui/system";
+=======
+import { Card} from "react-bootstrap";
+>>>>>>> f8827b352c391cd2420f65c5927147cb9a8e5086
 
 function Cards() {
   return (
@@ -38,4 +42,8 @@ function Cards() {
   );
 }
 
+<<<<<<< HEAD
 export default Cards;
+=======
+export default Cards;
+>>>>>>> f8827b352c391cd2420f65c5927147cb9a8e5086

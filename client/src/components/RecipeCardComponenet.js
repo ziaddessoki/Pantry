@@ -11,14 +11,15 @@ const RecipeCardComponenet = ({ title, image, id, userID }) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const API_KEY = process.env.REACT_APP_SPOONACULAR_API_KEY;
+    // const API_KEY = process.env.REACT_APP_SPOONACULAR_API_KEY;
 
     useEffect(() => {
         getRecipesInstructions();
     }, [query]);
 
     const getRecipesInstructions = async () => {
-        const response = await fetch(`https://api.spoonacular.com/recipes/${query}/information?includeNutrition=false&apiKey=${API_KEY}`);
+        const response = await fetch(`https://api.spoonacular.com/recipes/${query}/information?includeNutrition=false&apiKey=033ca393208146a0977e6ee214636992
+        `);
         const data = await response.json();
         setRecipeInstructions(data);
         console.log(data);
@@ -56,28 +57,33 @@ const RecipeCardComponenet = ({ title, image, id, userID }) => {
     
 
     return (
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: '18rem', backgroundColor:'#cd9093',margin:"1%", display:"inline-block", textAlign:"center"}}>
                 <Card.Img variant="top" src={image} />
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
                     <Card.Text>
                     </Card.Text>
-                    <Button onClick={getSearch} value={id} variant="primary">Get Recipe</Button>
+                    <Button onClick={getSearch} value={id} style={{backgroundColor:'#bc7',color:'black',fontFamily: "Bradley Hand, cursive"}} >Get Recipe Instructions</Button>
                 </Card.Body>
 
-                <Modal show={show} onHide={handleClose}>
+                <Modal show={show} onHide={handleClose} style={{color:'black',fontFamily: "Bradley Hand, cursive"}}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Instructions for: {title}</Modal.Title>
+                        <Modal.Title >Instructions for: {title}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <InstructionsComponent instructions={recipesInstructions.instructions} />
+                        <InstructionsComponent style={{backgroundColor:'#bc7',color:'black',fontFamily: "Bradley Hand, cursive"}} instructions={recipesInstructions.instructions} />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
                             Close
           </Button>
+<<<<<<< HEAD
                         <Button variant="primary" onClick={saveRecipe} >
                             Save Changes
+=======
+                        <Button variant="primary" onClick={saveRecipe}>
+                            Save Recipe
+>>>>>>> f8827b352c391cd2420f65c5927147cb9a8e5086
           </Button>
                     </Modal.Footer>
                 </Modal>
