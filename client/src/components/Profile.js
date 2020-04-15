@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import RecipeCardComponenet from "./RecipeCardComponenet";
 import Typography from "@material-ui/core/Typography";
-<<<<<<< HEAD
 import { fireAuth } from "../fireApi";
 import API from '../utils/API';
 import "./Profile.css";
@@ -11,9 +10,6 @@ import "./Profile.css";
 // import { fas } from '@fortawesome/free-solid-svg-icons'
 // import { fab } from '@fortawesome/free-brands-svg-icons'
 // import { findIconDefinition, icon } from '@fortawesome/fontawesome-svg-core'
-=======
-import API from "../utils/API";
->>>>>>> f8827b352c391cd2420f65c5927147cb9a8e5086
 
 class Profile extends Component {
   constructor(props) {
@@ -42,19 +38,11 @@ class Profile extends Component {
   onChange = event => {
     this.setState({ value: event.target.value });
   };
-<<<<<<< HEAD
 // Addind to the Pantry
   onSubmit = (event) => {
     event.preventDefault()
     this.setState({value:""})
     
-=======
-  // Addind to the Pantry
-  onSubmit = event => {
-    event.preventDefault();
-    event.target.reset();
-
->>>>>>> f8827b352c391cd2420f65c5927147cb9a8e5086
     const userPantry = {
       id: this.state._id,
       newPantry: this.state.value
@@ -129,42 +117,6 @@ class Profile extends Component {
           <h5 style={{ textAlign: "center" }}>ID:{this.props.id}</h5>
         </Typography>
 
-<<<<<<< HEAD
-        <h1>HELLO: <b>{this.props.activeUser.data.username}</b>,</h1>
-
-        <Typography variant={"subtitle1"}>
-          {this.state.pantry.map((pantry, i) => <li className="deleteItem" data-value={pantry} key={i} >{pantry} <Button onClick={() => { this.onDeleteItem(pantry, i) }}>X</Button> </li>)}
-        </Typography>
-        <form onSubmit={this.onSubmit}>
-          <input
-            value={this.state.value}
-            onChange={this.onChange}
-            name="pantry"
-            type="text"
-            placeholder="Add to pantry"
-          />
-          <Button type="submit" variant="contained" color="primary">
-            Add Ingridient
-                </Button>
-        </form>
-
-        <Typography variant={"subtitle1"}> THESE ARE UR FAVE RECIPES
-          {this.state.favRecipes.map((favRecipes, i) =>
-
-          <div className="favorite" data-value={favRecipes} key={i} >
-            {favRecipes.title} <br />
-            {favRecipes.recipesInstructions}
-            <img src={favRecipes.image}></img>
-
-            <Button onClick={() => { this.onDeleteRecipe(favRecipes.title, i) }}>X</Button>
-          </div>)}
-        </Typography>
-
-       
-
-        <Button variant={"contained"} onClick={() => { fireAuth.signOut(); this.onLogOut() }} >
-          Logout
-=======
         <aside
           style={{
             textAlign: "center",
@@ -200,7 +152,6 @@ class Profile extends Component {
               }}
             >
               Add Ingridient
->>>>>>> f8827b352c391cd2420f65c5927147cb9a8e5086
             </Button>
           </form>
           <h3

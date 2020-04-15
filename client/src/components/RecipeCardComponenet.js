@@ -77,13 +77,8 @@ const RecipeCardComponenet = ({ title, image, id, userID }) => {
                         <Button variant="secondary" onClick={handleClose}>
                             Close
           </Button>
-<<<<<<< HEAD
-                        <Button variant="primary" onClick={saveRecipe} >
-                            Save Changes
-=======
                         <Button variant="primary" onClick={saveRecipe}>
                             Save Recipe
->>>>>>> f8827b352c391cd2420f65c5927147cb9a8e5086
           </Button>
                     </Modal.Footer>
                 </Modal>
