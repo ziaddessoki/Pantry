@@ -4,3 +4,10 @@ h1{
             font-Family: "Bradley Hand, cursive";
             font-Size: "30pt" 
 }
+
+.Testing{
+    text-align: center;
+    margin-top: 2%;
+    font-family: Bradley Hand, cursive;
+    font-size: 30pt
+}

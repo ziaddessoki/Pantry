@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import RecipeCardComponenet from "./RecipeCardComponenet";
 import Typography from "@material-ui/core/Typography";
-import { fireAuth } from "../fireApi";
+
 import API from '../utils/API';
-import "./Profile.css";
+import classes from './Profile.css';
 // import Public from "./Public"
 // import { library } from '@fortawesome/fontawesome-svg-core'
 // import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -102,14 +102,7 @@ class Profile extends Component {
   render() {
     return (
       <React.Fragment>
-        <h1
-          style={{
-            textAlign: "center",
-            marginTop: "2%",
-            fontFamily: "Bradley Hand, cursive",
-            fontSize: "30pt"
-          }}
-        >
+        <h1 className={classes.Testing}>
           {" "}
           Welcome {this.props.displayName}!
         </h1>
@@ -251,6 +244,7 @@ class Profile extends Component {
                   borderRadius: "10%",
                   marginLeft: "23%"
                 }}
+                alt="favRecipes"
                 src={favRecipes.image}
               ></img>
               <h4 style={{ textAlign: "center" }}>{favRecipes.title} </h4>

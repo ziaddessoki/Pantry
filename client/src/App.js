@@ -5,7 +5,7 @@ import "./App.css";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import LoginForm from "./components/LoginForm";
-import Public from "./components/Public";
+
 import { fireAuth } from "./fireApi";
 import withAuthProtection from "./withAuthProtection";
 import API from "./utils/API";
@@ -92,40 +92,29 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Navbar expand="lg" style={{ backgroundColor: "#cd9093" }}>
-          <Navbar.Brand
-            style={{ fontFamily: "Bradley Hand, cursive", fontSize: "30pt" }}
-            href="/"
-          >
-            Pantry
-          </Navbar.Brand>
+
+          <Navbar.Brand style={{ fontFamily: "Bradley Hand, cursive", fontSize: "30pt" }} href="/" > Pantry </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link>
-                <Link
-                  to="/"
-                  style={{
+                <Link to="/" style={{
                     fontFamily: "Bradley Hand, cursive",
                     fontSize: "18pt",
                     textDecorationColor: "#bc7",
                     color: "black"
                   }}
-                >
-                  Home
-                </Link>
+                >  Home </Link>
               </Nav.Link>
               <Nav.Link>
-                <Link
-                  to="/login"
+                <Link to="/login"
                   style={{
                     fontFamily: "Bradley Hand, cursive",
                     fontSize: "18pt",
                     textDecorationColor: "#bc7",
                     color: "black"
                   }}
-                >
-                  Login
-                </Link>
+                > Login </Link>
               </Nav.Link>
               <Nav.Link>
                 {" "}
@@ -182,7 +171,7 @@ class App extends React.Component {
                 <LoginForm onSubmit={this.handleSignIn(history)} />
 
                 <ButtonToolbar style={{
-                    marginLeft: "18%",
+                    
                     marginLeft: "43%",
                     fontFamily: "Bradley Hand, cursive"
                   }}>
@@ -227,15 +216,10 @@ class App extends React.Component {
               </Wrapper>
             )}
           />
-          <Route
-            path="/profile"
-            
-            exact
+          <Route path="/profile" exact
             render={props => (
               <Wrapper>
-                {/* <Link to="/">Home</Link> */}
-                {/* {this.isSomeoneSignedIn()} */}
-                <ProtectedProfile
+               <ProtectedProfile
                   {...props}
                   me={me}
                   displayName={email}

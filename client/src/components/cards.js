@@ -1,7 +1,7 @@
 import React from "react";
 // import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Card, Accordion, Button } from "react-bootstrap";
-import { fontFamily } from "@material-ui/system";
+import { Card } from "react-bootstrap";
+
 
 function Cards() {
   return (

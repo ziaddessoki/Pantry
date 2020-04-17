@@ -2,7 +2,7 @@ import React from "react";
 
 import Jumbotron from "react-bootstrap/Jumbotron";
 import jumbo from "../images/jumbo.png";
-import { textAlign } from "@material-ui/system";
+
 function Jumbo() {
   return (
     <div>
