@@ -1,7 +1,7 @@
-import React from "react";
+import React, {Component} from "react";
 import _ from "lodash";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-import "./App.css";
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import classes from "./App.css";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import LoginForm from "./components/LoginForm";
@@ -16,6 +16,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import Footer from './components/footer'
 
 const Wrapper = props => (
   <div style={{ maxWidth: "100%", padding: 16, margin: "auto" }} {...props} />
@@ -23,15 +24,16 @@ const Wrapper = props => (
 
 const ProtectedProfile = withAuthProtection("/login")(Profile);
 
-class App extends React.Component {
+class App extends Component {
   constructor() {
     super();
     console.log("user", fireAuth.currentUser);
     this.state = {
       me: fireAuth.currentUser,
-      activeUser: {}
+      activeUser: null
     };
   }
+  
 
   isSomeoneSignedIn = () => {
     if (this.state.activeUser) {
@@ -52,13 +54,11 @@ class App extends React.Component {
   componentDidMount() {
     fireAuth.onAuthStateChanged(me => {
       console.log(me.email);
-      API.saveUser({ email: me.email, fBaseId: me.uid }).catch(err =>
-        console.log(err)
-      );
+      API.saveUser({ email: me.email, fBaseId: me.uid })
+      .catch(err =>console.log(err));
 
-      API.getUser(me.uid).then(d => {
-        this.setState({ activeUser: d });
-      });
+      API.getUser(me.uid)
+      .then(d => {this.setState({ activeUser: d })});
       this.setState({ me });
     });
   }
@@ -68,6 +68,7 @@ class App extends React.Component {
       return history.push("/profile");
     });
   };
+
   handleSignUp = history => (email, password) => {
     fireAuth
       .createUserWithEmailAndPassword(email, password)
@@ -89,82 +90,47 @@ class App extends React.Component {
     const email = _.get(me, "email");
     const id = _.get(me, "uid");
     const activeUser = this.state.activeUser;
+    console.log(this.state);
+
+    let logoutButton = null;
+
+  if (this.state.activeUser){
+    logoutButton = <Button variant={"contained"}
+    onClick={() => {
+      fireAuth.signOut();
+      this.onLogOut();
+    }}
+    className={classes.Icon}
+  >
+    Logout
+  </Button> 
+
+  }
     return (
       <BrowserRouter>
+
         <Navbar expand="lg" style={{ backgroundColor: "#cd9093" }}>
 
           <Navbar.Brand style={{ fontFamily: "Bradley Hand, cursive", fontSize: "30pt" }} href="/" > Pantry </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link>
-                <Link to="/" style={{
-                    fontFamily: "Bradley Hand, cursive",
-                    fontSize: "18pt",
-                    textDecorationColor: "#bc7",
-                    color: "black"
-                  }}
-                >  Home </Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link to="/login"
-                  style={{
-                    fontFamily: "Bradley Hand, cursive",
-                    fontSize: "18pt",
-                    textDecorationColor: "#bc7",
-                    color: "black"
-                  }}
-                > Login </Link>
-              </Nav.Link>
-              <Nav.Link>
-                {" "}
-                <Link
-                  to="/profile"
-                  style={{
-                    fontFamily: "Bradley Hand, cursive",
-                    fontSize: "18pt",
-                    textDecorationColor: "#bc7",
-                    color: "black"
-                  }}
-                >
-                  Profile
-                </Link>
-              </Nav.Link>
+                <Link to="/" className={classes.Icon}>  Home </Link>
+                <Link to="/login" className={classes.Icon}> Login </Link>
+                <Link to="/profile" className={classes.Icon}> Profile </Link>
             </Nav>
-            <Button
-              variant={"contained"}
-              onClick={() => {
-                fireAuth.signOut();
-                this.onLogOut();
-              }}
-              style={{
-                marginLeft: "45%",
-                fontFamily: "Bradley Hand, cursive",
-                fontSize: "18pt",
-                textDecorationColor: "#bc7",
-                color: "black"
-              }}
-            >
-              Logout
-            </Button>
+
+              {logoutButton}
+
           </Navbar.Collapse>
         </Navbar>
 
-        <Switch>
+       
         
-          <Route
-            path="/"
-            exact
-            render={() => (
-              <Wrapper>
-              
-                <Home />
-              </Wrapper>
-            )}
-          />
-          <Route
-            path="/login"
-            exact
+          <Route path="/" exact component={Home}/>
+
+          <Route path="/login"
+            
             render={({ history }) => (
               <Wrapper>
                 
@@ -216,25 +182,12 @@ class App extends React.Component {
               </Wrapper>
             )}
           />
-          <Route path="/profile" exact
-            render={props => (
-              <Wrapper>
-               <ProtectedProfile
-                  {...props}
-                  me={me}
-                  displayName={email}
-                  id={id}
-                  activeUser={activeUser}
-                />
-              </Wrapper>
-            )}
-          />
-          
-            )}
-          /> */}
-        </Switch>
+          <Route path="/profile" 
+            render={props => (<ProtectedProfile {...props} me={me} displayName={email} id={id} activeUser={activeUser}/> )}/>
+     
       </BrowserRouter>
-    );
+      
+);
   }
 }
 export default App;
