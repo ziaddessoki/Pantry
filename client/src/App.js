@@ -138,8 +138,10 @@ class App extends Component {
 
                 <ButtonToolbar style={{
                     
-                    marginLeft: "43%",
-                    fontFamily: "Bradley Hand, cursive"
+                    margin: "auto",
+                    fontFamily: "Bradley Hand, cursive",
+                    padding:"10px"
+                    
                   }}>
                   {["Sign Up"].map(placement => (
                     <OverlayTrigger
@@ -148,7 +150,7 @@ class App extends Component {
                       placement={placement}
                       overlay={
                         <Popover
-                          style={{ color: "black", backgroundColor: "#bc7" }}
+                          style={{ color: "black", backgroundColor: "yellow" }}
                           id={`popover-positioned-${placement}`}
                         >
                           <Popover.Title
@@ -168,9 +170,12 @@ class App extends Component {
                     >
                       <Button
                         style={{
+                          itemAlign:'center',
                           backgroundColor: "#cd9093",
                           fontFamily: "Bradley Hand, cursive",
-                          marginLeft: "7%"
+                          margin: "auto",
+                          width:"300px",
+                          color:"white",
                         }}
                         variant="primary"
                       >

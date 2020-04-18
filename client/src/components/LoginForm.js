@@ -4,9 +4,10 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
+// import SignUp from './signUp';
 
 class LoginForm extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       email: "",
@@ -68,6 +69,7 @@ class LoginForm extends React.Component {
             value={password}
             onChange={this.handleChange("password")}
           />
+          
           <Button
           style={{
             fontFamily:"Bradley Hand, cursive", fontSize:"16pt",
@@ -91,7 +93,12 @@ class LoginForm extends React.Component {
               "Login"
             )}
           </Button>
+       
+          {/* <SignUp/>     */}
+       
         </form>
+        
+
       </React.Fragment>
     );
   }
