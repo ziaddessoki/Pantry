@@ -177,8 +177,7 @@ class App extends Component {
                           width:"300px",
                           color:"white",
                         }}
-                        variant="primary"
-                      >
+                        variant="primary">
                         {placement}
                       </Button>
                     </OverlayTrigger>
