@@ -13,18 +13,27 @@ import classes from './Profile.css';
 
 class Profile extends Component {
   constructor(props) {
-    console.log("props that have ID" + props);
     super(props);
     this.state = {
       recipes: [""],
-      _id: this.props.activeUser.data._id,
-      fBaseId: this.props.activeUser.data.fBaseId,
-      pantry: this.props.activeUser.data.pantry,
+      _id: this.props.activeUser._id,
+      fBaseId: this.props.activeUser.fBaseId,
+      pantry: this.props.activeUser.pantry,
       value: "",
-      favRecipes: this.props.activeUser.data.favRecipes
+      favRecipes: this.props.activeUser.favRecipes
     };
     this.onSubmit = this.onSubmit.bind(this);
   }
+
+
+  // _id: this.props.activeUser.data._id,
+  // fBaseId: this.props.activeUser.data.fBaseId,
+  // pantry: this.props.activeUser.data.pantry,
+  // value: "",
+  // favRecipes: this.props.activeUser.data.favRecipes
+
+
+
   // componentDidMount() {
   //   this.loadUser();
   // }
@@ -38,7 +47,7 @@ class Profile extends Component {
   onChange = event => {
     this.setState({ value: event.target.value });
   };
-// Addind to the Pantry
+// Adding to the Pantry
   onSubmit = (event) => {
     event.preventDefault()
     this.setState({value:""})

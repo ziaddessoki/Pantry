@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+.NavIcon{
+  font-family: Bradley Hand, cursive;
+   font-size: 30pt;
+}
+
 .Icon{
       font-family: Bradley Hand, cursive;
       font-size: 18pt;
@@ -19,12 +24,15 @@
 
 .SignUpBtn{
   align-items: center;
-  background-color: #bc7;
+  background-color: #cd9093;
   font-family: Bradley Hand, cursive;
   margin: auto;
   width:300px;
   color:white;
-  /* margin-right: 500px; */
-  /* align-self: center;
-  margin-right: 400px; */
+ 
+}
+
+.Popover{
+  text-align: center;
+  background-color: yellow;
 }

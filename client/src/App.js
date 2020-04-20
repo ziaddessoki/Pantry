@@ -18,9 +18,6 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Footer from './components/footer'
 
-const Wrapper = props => (
-  <div style={{ maxWidth: "100%", padding: 16, margin: "auto" }} {...props} />
-);
 
 const ProtectedProfile = withAuthProtection("/login")(Profile);
 
@@ -28,38 +25,20 @@ class App extends Component {
  
     
    state = {
-      me: fireAuth.currentUser,
-      activeUser: null
+      userFB: "",
+      activeUser: []
     };
   
   
-
-  isSomeoneSignedIn = () => {
-    if (this.state.activeUser) {
-      return (
-        <ProtectedProfile
-          {...this.state.props}
-          me={this.state.me}
-          displayName={this.state.email}
-          id={this.state.id}
-          activeUser={this.state.activeUser}
-        />
-      );
-    } else {
-      return <ProtectedProfile />;
-    }
-  };
-
   componentDidMount() {
-    fireAuth.onAuthStateChanged(me => {
-      console.log(me.email);
-      API.saveUser({ email: me.email, fBaseId: me.uid })
+    fireAuth.onAuthStateChanged(currentUser => {
+     this.setState({ userFB : currentUser })
+     API.getUser(currentUser.uid)
+      .then(userDB => {this.setState({ activeUser: userDB.data },console.log(userDB),)});
+      console.log(this.state.activeUser)
       .catch(err =>console.log(err));
-
-      API.getUser(me.uid)
-      .then(d => {this.setState({ activeUser: d })});
-      this.setState({ me });
-    });
+    })
+    
   }
 
   handleSignIn = history => (email, password) => {
@@ -69,13 +48,12 @@ class App extends Component {
   };
 
   handleSignUp = history => (email, password) => {
-    fireAuth
-      .createUserWithEmailAndPassword(email, password)
-      .catch(function(error) {
+    fireAuth.createUserWithEmailAndPassword(email, password)
+    .catch(function(error) {
         // Handle Errors here.
-        // var errorCode = error.code;
-        // var errorMessage = error.message;
-        // ...
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        
       });
     return history.push("/profile");
   };
@@ -85,44 +63,34 @@ class App extends Component {
   }
 
   render() {
-    const { me } = this.state;
-    const email = _.get(me, "email");
-    const id = _.get(me, "uid");
+    console.log(this.state
+      )
+    const { userFB } = this.state;
+    const email = _.get(userFB, "email");
+    const id = _.get(userFB, "uid");
     const activeUser = this.state.activeUser;
     
 
     let logoutButton = null;
 
-  if (this.state.activeUser){
-    logoutButton = <Button variant={"contained"}
-    onClick={() => {
-      fireAuth.signOut();
-      this.onLogOut();
-    }}
-    className={classes.Icon}
-  >
-    Logout
-  </Button> 
+    if (this.state.activeUser){
+      logoutButton =
+       <Button variant={"contained"}
+          onClick={() => { fireAuth.signOut(); this.onLogOut()}}
+          className={classes.Icon}>
+            Logout
+       </Button> 
 
-  }
+    }
 
 
   const popover = history =>(
-    <Popover
-                          style={{ color: "black", backgroundColor: "yellow" }}
-                          id={`popover-basic`}
-                        >
-                          <Popover.Title
-                            style={{ fontFamily: "Bradley Hand, cursive" }}
-                            as="h3"
-                          >{`Sign Up`}</Popover.Title>
-                          <Popover.Content>
-                            <SignUpForm
-                              onSubmit={this.handleSignUp(history)}
-                              style={{ fontFamily: "Bradley Hand, cursive" }}
-                            />
-                          </Popover.Content>
-                        </Popover>
+    <Popover className={classes.Popover}  id={`popover-basic`} >
+        <Popover.Title as="h3">{`Sign Up`}</Popover.Title>
+              <Popover.Content>
+                  <SignUpForm onSubmit={this.handleSignUp(history)}/>
+              </Popover.Content>
+      </Popover>
                       
   )
     return (
@@ -130,7 +98,7 @@ class App extends Component {
 
         <Navbar expand="lg" style={{ backgroundColor: "#cd9093" }}>
 
-          <Navbar.Brand style={{ fontFamily: "Bradley Hand, cursive", fontSize: "30pt" }} href="/" > Pantry </Navbar.Brand>
+          <Navbar.Brand className={classes.NavIcon} href="/" > Pantry </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
@@ -138,10 +106,8 @@ class App extends Component {
                 <Link to="/login" className={classes.Icon}> Login </Link>
                 <Link to="/profile" className={classes.Icon}> Profile </Link>
             </Nav>
-
-              {logoutButton}
-
-          </Navbar.Collapse>
+               {logoutButton}
+         </Navbar.Collapse>
         </Navbar>
 
        
@@ -149,10 +115,8 @@ class App extends Component {
           <Route path="/" exact component={Home}/>
 
           <Route path="/login"
-            
             render={({ history }) => (
-              <Wrapper>
-                
+              <div>
                 <LoginForm onSubmit={this.handleSignIn(history)} />
 
                 <ButtonToolbar className={classes.ButtonToolbar}>
@@ -160,14 +124,14 @@ class App extends Component {
                       <Button className={classes.SignUpBtn} variant="primary">Sign Up</Button>
                     </OverlayTrigger>
                 </ButtonToolbar>
-              </Wrapper>
+                </div>
             )}
           />
 
 
 
           <Route path="/profile" 
-            render={props => (<ProtectedProfile {...props} me={me} displayName={email} id={id} activeUser={activeUser}/> )}/>
+            render={props => (<ProtectedProfile {...props} me={userFB} displayName={email} id={id} activeUser={activeUser}/> )}/>
      
       </BrowserRouter>
       
