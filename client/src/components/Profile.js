@@ -5,11 +5,7 @@ import Typography from "@material-ui/core/Typography";
 
 import API from '../utils/API';
 import classes from './Profile.css';
-// import Public from "./Public"
-// import { library } from '@fortawesome/fontawesome-svg-core'
-// import { fas } from '@fortawesome/free-solid-svg-icons'
-// import { fab } from '@fortawesome/free-brands-svg-icons'
-// import { findIconDefinition, icon } from '@fortawesome/fontawesome-svg-core'
+
 
 class Profile extends Component {
   constructor(props) {
@@ -99,7 +95,6 @@ class Profile extends Component {
   CurrentPantry = async event => {
     event.preventDefault();
     const rSearch = this.state.pantry.join();
-    console.log(rSearch);
     const response = await fetch(
       `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${rSearch}&number=10&apiKey=60d9128af34b4f85baab35d9135e7ff3`
     );
@@ -112,12 +107,12 @@ class Profile extends Component {
     return (
       <React.Fragment>
         <h1 className={classes.Testing}>
-          {" "}
+          
           Welcome {this.props.displayName}!
         </h1>
-        <Typography variant={"subtitle1"}>
+        
           <h5 style={{ textAlign: "center" }}>ID:{this.props.id}</h5>
-        </Typography>
+        
 
         <aside
           style={{

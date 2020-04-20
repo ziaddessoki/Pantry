@@ -26,7 +26,7 @@ class App extends Component {
     
    state = {
       userFB: "",
-      activeUser: []
+      activeUser: null
     };
   
   
@@ -71,9 +71,10 @@ class App extends Component {
     const activeUser = this.state.activeUser;
     
 
-    let logoutButton = null;
 
-    if (this.state.activeUser){
+    //logOut hide/show
+    let logoutButton = null;
+     if (this.state.activeUser){
       logoutButton =
        <Button variant={"contained"}
           onClick={() => { fireAuth.signOut(); this.onLogOut()}}
