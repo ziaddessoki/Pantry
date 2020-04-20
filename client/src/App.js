@@ -110,7 +110,7 @@ class App extends Component {
   const popover = history =>(
     <Popover
                           style={{ color: "black", backgroundColor: "yellow" }}
-                          id={`popover-positioned-Sign Up`}
+                          id={`popover-basic`}
                         >
                           <Popover.Title
                             style={{ fontFamily: "Bradley Hand, cursive" }}
@@ -156,9 +156,7 @@ class App extends Component {
                 <LoginForm onSubmit={this.handleSignIn(history)} />
 
                 <ButtonToolbar className={classes.ButtonToolbar}>
-                   <OverlayTrigger trigger="click" placement='top'
-                      overlay={ popover(history) }
-                    >
+                   <OverlayTrigger trigger="click" placement='top' overlay={popover(history)} >
                       <Button className={classes.SignUpBtn} variant="primary">Sign Up</Button>
                     </OverlayTrigger>
                 </ButtonToolbar>
