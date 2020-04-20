@@ -3,7 +3,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Typography from "@material-ui/core/Typography";
+
 
 class SignUpForm extends React.Component {
   constructor() {
@@ -75,9 +75,9 @@ class SignUpForm extends React.Component {
               )}
           </Button>
         </form>
-        <Typography variant={"subtitle1"}>
+        {/* <Typography variant={"subtitle1"}>
           My ID is <b>{this.props.id}</b>
-        </Typography>
+        </Typography> */}
       </React.Fragment>
     );
   } 

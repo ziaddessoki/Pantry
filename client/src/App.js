@@ -25,14 +25,13 @@ const Wrapper = props => (
 const ProtectedProfile = withAuthProtection("/login")(Profile);
 
 class App extends Component {
-  constructor() {
-    super();
-    console.log("user", fireAuth.currentUser);
-    this.state = {
+ 
+    
+   state = {
       me: fireAuth.currentUser,
       activeUser: null
     };
-  }
+  
   
 
   isSomeoneSignedIn = () => {
@@ -90,7 +89,7 @@ class App extends Component {
     const email = _.get(me, "email");
     const id = _.get(me, "uid");
     const activeUser = this.state.activeUser;
-    console.log(this.state);
+    
 
     let logoutButton = null;
 
@@ -106,6 +105,26 @@ class App extends Component {
   </Button> 
 
   }
+
+
+  const popover = history =>(
+    <Popover
+                          style={{ color: "black", backgroundColor: "yellow" }}
+                          id={`popover-positioned-Sign Up`}
+                        >
+                          <Popover.Title
+                            style={{ fontFamily: "Bradley Hand, cursive" }}
+                            as="h3"
+                          >{`Sign Up`}</Popover.Title>
+                          <Popover.Content>
+                            <SignUpForm
+                              onSubmit={this.handleSignUp(history)}
+                              style={{ fontFamily: "Bradley Hand, cursive" }}
+                            />
+                          </Popover.Content>
+                        </Popover>
+                      
+  )
     return (
       <BrowserRouter>
 
@@ -136,56 +155,19 @@ class App extends Component {
                 
                 <LoginForm onSubmit={this.handleSignIn(history)} />
 
-                <ButtonToolbar style={{
-                    
-                    margin: "auto",
-                    fontFamily: "Bradley Hand, cursive",
-                    padding:"10px"
-                    
-                  }}>
-                  {["Sign Up"].map(placement => (
-                    <OverlayTrigger
-                      trigger="click"
-                      key={placement}
-                      placement={placement}
-                      overlay={
-                        <Popover
-                          style={{ color: "black", backgroundColor: "yellow" }}
-                          id={`popover-positioned-${placement}`}
-                        >
-                          <Popover.Title
-                            style={{ fontFamily: "Bradley Hand, cursive" }}
-                            as="h3"
-                          >{`${placement}`}</Popover.Title>
-                          <Popover.Content
-                            style={{ fontFamily: "Bradley Hand, cursive" }}
-                          >
-                            <SignUpForm
-                              onSubmit={this.handleSignUp(history)}
-                              style={{ fontFamily: "Bradley Hand, cursive" }}
-                            />
-                          </Popover.Content>
-                        </Popover>
-                      }
+                <ButtonToolbar className={classes.ButtonToolbar}>
+                   <OverlayTrigger trigger="click" placement='top'
+                      overlay={ popover(history) }
                     >
-                      <Button
-                        style={{
-                          itemAlign:'center',
-                          backgroundColor: "#cd9093",
-                          fontFamily: "Bradley Hand, cursive",
-                          margin: "auto",
-                          width:"300px",
-                          color:"white",
-                        }}
-                        variant="primary">
-                        {placement}
-                      </Button>
+                      <Button className={classes.SignUpBtn} variant="primary">Sign Up</Button>
                     </OverlayTrigger>
-                  ))}
                 </ButtonToolbar>
               </Wrapper>
             )}
           />
+
+
+
           <Route path="/profile" 
             render={props => (<ProtectedProfile {...props} me={me} displayName={email} id={id} activeUser={activeUser}/> )}/>
      

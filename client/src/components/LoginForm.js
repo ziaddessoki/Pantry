@@ -44,7 +44,7 @@ class LoginForm extends React.Component {
             width: "400px",
             backgroundColor: "#bc7",
             borderRadius: "6%",
-            marginLeft:"36%",
+            margin:'auto',
             // marginTop:"12%",
           }}
           onSubmit={this.handleSubmit}

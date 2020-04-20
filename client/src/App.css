@@ -10,3 +10,21 @@
       padding:10px;
       
 }
+
+.ButtonToolbar{
+  margin: 10px;
+  font-family: Bradley Hand, cursive;
+  padding:10px
+}
+
+.SignUpBtn{
+  align-items: center;
+  background-color: green;
+  font-family: Bradley Hand, cursive;
+  margin: auto;
+  width:300px;
+  color:white;
+  /* margin-right: 500px; */
+  /* align-self: center;
+  margin-right: 400px; */
+}
