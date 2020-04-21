@@ -32,7 +32,7 @@ const RecipeCardComponenet = ({ title, image, id, userID }) => {
     const saveRecipe = () => {
 
         
-        window.location = "/profile"
+        
         
         
 
@@ -41,7 +41,8 @@ const RecipeCardComponenet = ({ title, image, id, userID }) => {
             image: image,
             recipesInstructions:recipesInstructions.instructions,
 
-        }}).catch(err => console.log(err));
+        }})
+        .then(window.location = "/profile").catch(err => console.log(err));
         console.log(userID)
         console.log(recipesInstructions.instructions)
     } 

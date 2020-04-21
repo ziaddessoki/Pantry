@@ -11,7 +11,7 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipes: [""],
+      recipesSearchResult: [""],
       _id: '',
       fBaseId: '',
       pantry: [],
@@ -43,24 +43,6 @@ class Profile extends Component {
     
   }
 
-  // _id: this.props.activeUser.data._id,
-  // fBaseId: this.props.activeUser.data.fBaseId,
-  // pantry: this.props.activeUser.data.pantry,
-  // value: "",
-  // favRecipes: this.props.activeUser.data.favRecipes
-
-
-
-  // componentDidMount() {
-  //   this.loadUser();
-  // }
-  // loadUser = (uid) => {
-  //   API.getUser(uid)
-  //     .then(res =>
-  //       this.setState({ activeUser: this.props.activeUser.data })
-  //     )
-  //     .catch(err => console.log(err));
-  // };
   onChange = event => {
     this.setState({ value: event.target.value });
   };
@@ -120,20 +102,18 @@ class Profile extends Component {
       `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${rSearch}&number=10&apiKey=60d9128af34b4f85baab35d9135e7ff3`
     );
     const data = await response.json();
-    this.setState({ recipes: data });
-    console.log(this.state.recipes);
+    this.setState({ recipesSearchResult: data });
+    console.log(this.state.recipesSearchResult);
   };
 
   render() {
-    console.log(this.state._id)
-    console.log(this.state.fBaseId)
-    console.log(this.state.pantry)
-    console.log(this.state.favRecipes)
+    
     return (
       <React.Fragment>
         <h1 className={classes.Testing}> Welcome {this.state.fire.email}!</h1>
         <h5 style={{ textAlign: "center" }}>Mongo ID:{this.state.dbdb._id}</h5>
         <h5 style={{ textAlign: "center" }}>fireBase ID:{this.state.fire.uid}</h5>
+        
         
 
         <aside className={classes.PantryBox}>
@@ -165,9 +145,10 @@ class Profile extends Component {
           <h3> Current Pantry: </h3>
           {this.state.pantry.map((pantry, i) => (
             <li className={classes.PantryList} data-value={pantry} key={i}
-              onClick={() => { this.onDeleteItem(pantry, i) }}>
+              >
               {pantry}{" "}
-              <img src="https://image.flaticon.com/icons/svg/1345/1345874.svg"
+              <img onClick={() => { this.onDeleteItem(pantry, i) }}
+              src="https://image.flaticon.com/icons/svg/1345/1345874.svg"
                 height="15px"
                 width="15px"
                 alt="delete"
@@ -191,7 +172,8 @@ class Profile extends Component {
             //   marginTop:"2%"
             // }}
             className={classes.AddPantryBtn}
-            variant="contained"
+            variant="dark"
+            // variant="contained"
             // color="primary"
             type="submit"
             onClick={event => {
@@ -202,7 +184,7 @@ class Profile extends Component {
           </Button>
 
 
-          {this.state.recipes.map(recipe => (
+          {this.state.recipesSearchResult.map(recipe => (
             recipe?<RecipeCardComponent
               saveRecipe={this.saveRecipe}
               userID={this.state._id}
@@ -221,24 +203,19 @@ class Profile extends Component {
           <h3>Saved Recipes</h3>
           {this.state.favRecipes.map((favRecipes, i) => (
             
-            <div className="favorite" data-value={favRecipes} key={i}>
+            <div className={classes.Favorite}  data-value={favRecipes} key={i}>
               <img className={classes.FavRecipeImg} alt="favRecipes" src={favRecipes.image}></img>
-              <h4 style={{ textAlign: "center" }}>{favRecipes.title} </h4>
+              <h4 className={classes.FavRecipeTitle}>{favRecipes.title} </h4>
               <br />
-              <p style={{ textAlign: "center", margin: "3%" }}>
-                {" "}
-                {favRecipes.recipesInstructions}
-              </p>
-              <button
-                onClick={() => {
-                  this.onDeleteRecipe(favRecipes.title, i);
-                }}
-              >
+              <p className={classes.FavRecipeTitle}>{favRecipes.recipesInstructions}</p>
+
+              <button className={classes.FavDelBtn}
+                onClick={() => { this.onDeleteRecipe(favRecipes.title, i)}}>
                 <img src="https://image.flaticon.com/icons/svg/1345/1345874.svg"
-                  height="30px"
-                  width="30px"
+                  height="15px"
+                  width="15px"
                   alt="delete"
-                ></img>{" "}
+                 ></img>{" "}
               </button>
               
             </div>

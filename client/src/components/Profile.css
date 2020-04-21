@@ -33,11 +33,12 @@ h1{
 };
 
 .AddPantryBtn{
+    position: relative;
     background-color: #cd9093;
     color: yellow;
     font-family: Bradley Hand, cursive;
     
-    margin: 2%;
+    margin: 100%;
     border-radius: 6%
 }
 
@@ -68,13 +69,33 @@ h1{
 .SavedJumbo{
     background-color: #bc7;
             width: 70%;
-            display: inline-block;
+            /* display: inline-block; */
             font-Family: Bradley Hand, cursive;
-            margin-top: 20px;
-            border-radius: 5px;
+            padding: 15px ;
+            margin: 20px auto;
+            display: flexbox;
+            justify-content: center;
+            align-items: center;
+            /* margin-left: 100px; */
+            border-radius: 10px;
             box-shadow: 0 2px 3px #5c5959;
-    border: 1px solid #eee;
+            border: 1px solid #eee;
             
+}
+
+.Favorite{
+    margin:15px 70px;display:inline-block;
+    border:1px solid black;
+    position: relative;
+}
+
+.FavDelBtn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0);
+    
 }
 
 
@@ -82,5 +103,18 @@ h1{
     text-align: center;
     border-radius: 10%;
     float: left;
+    margin: 5px;
 
+}
+
+.FavRecipeTitle{
+    
+    text-align: center; 
+    margin: 3px 5px
+}
+
+.FavRecipeP{
+    
+    text-align: center; 
+    margin: 3px 5px
 }
