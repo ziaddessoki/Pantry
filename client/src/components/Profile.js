@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
-import RecipeCardComponenet from "./RecipeCardComponenet";
-import Typography from "@material-ui/core/Typography";
+import Button from "react-bootstrap/Button";
+import RecipeCardComponent from "./RecipeCardComponent";
 
+import { fireAuth } from "../fireApi";
 import API from '../utils/API';
 import classes from './Profile.css';
 
@@ -12,15 +12,36 @@ class Profile extends Component {
     super(props);
     this.state = {
       recipes: [""],
-      _id: this.props.activeUser._id,
-      fBaseId: this.props.activeUser.fBaseId,
-      pantry: this.props.activeUser.pantry,
+      _id: '',
+      fBaseId: '',
+      pantry: [],
       value: "",
-      favRecipes: this.props.activeUser.favRecipes
+      favRecipes: [],
+      fire:"",
+      dbdb:"",
     };
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+
+
+  componentDidMount() {
+    fireAuth.onAuthStateChanged(currentUser => {
+      console.log(currentUser)
+     this.setState({ fire : currentUser, fBaseId:currentUser.uid })
+     API.getUser(currentUser.uid)
+      .then(userDB => {
+        this.setState({ 
+          dbdb: userDB.data,
+          _id:userDB.data._id,
+          pantry:userDB.data.pantry,
+          favRecipes:userDB.data.favRecipes },
+        console.log(userDB),)});
+      console.log(this.state.activeUser)
+      // .catch(err =>console.log(err));
+    })
+    
+  }
 
   // _id: this.props.activeUser.data._id,
   // fBaseId: this.props.activeUser.data.fBaseId,
@@ -104,110 +125,74 @@ class Profile extends Component {
   };
 
   render() {
+    console.log(this.state._id)
+    console.log(this.state.fBaseId)
+    console.log(this.state.pantry)
+    console.log(this.state.favRecipes)
     return (
       <React.Fragment>
-        <h1 className={classes.Testing}>
-          
-          Welcome {this.props.displayName}!
-        </h1>
-        
-          <h5 style={{ textAlign: "center" }}>ID:{this.props.id}</h5>
+        <h1 className={classes.Testing}> Welcome {this.state.fire.email}!</h1>
+        <h5 style={{ textAlign: "center" }}>Mongo ID:{this.state.dbdb._id}</h5>
+        <h5 style={{ textAlign: "center" }}>fireBase ID:{this.state.fire.uid}</h5>
         
 
-        <aside
-          style={{
-            textAlign: "center",
-            width: "250px",
-            float: "left",
-            backgroundColor: "#bc7",
-            borderRadius: "10%"
-          }}
-        >
+        <aside className={classes.PantryBox}>
           <form onSubmit={this.onSubmit}>
-            <input
-              value={this.state.value}
+            <input value={this.state.value}
               onChange={this.onChange}
-              style={{
-                fontFamily: "Bradley Hand, cursive",
-                fontSize: "16pt",
-                borderRadius: "10%",
-                marginTop: "4%"
-              }}
+              className={classes.PantryInput}
               name="pantry"
               type="text"
               placeholder="Add to pantry"
             />
-            <Button
-              type="submit"
-              input
-              variant="contained"
-              style={{
-                fontFamily: "Bradley Hand, cursive",
-                backgroundColor: "#cd9093",
-                marginTop: "2%",
-                borderRadius: "6%"
-              }}
+            <Button 
+            className={classes.AddPantryBtn} 
+            type="submit"  
+            // variant="primary"
+              // style={{
+              //   fontFamily: "Bradley Hand, cursive",
+              //   backgroundColor: "#cd9093",
+              //   marginTop: "2%",
+              //   borderRadius: "6%"
+              // }}
             >
-              Add Ingridient
+              Add Ingredient
             </Button>
           </form>
-          <h3
-            style={{
-              fontFamily: "Bradley Hand, cursive",
-              textDecoration: "underline"
-            }}
-          >
-            Current Pantry:
-          </h3>
+
+
+          {/* displaying Pantry */}
+          <h3> Current Pantry: </h3>
           {this.state.pantry.map((pantry, i) => (
-            <li
-              style={{
-                textAlign: "center",
-                fontFamily: "Bradley Hand, cursive"
-              }}
-              className="deleteItem"
-              data-value={pantry}
-              key={i}
-              onClick={() => {
-                this.onDeleteItem(pantry, i);
-              }}
-            >
+            <li className={classes.PantryList} data-value={pantry} key={i}
+              onClick={() => { this.onDeleteItem(pantry, i) }}>
               {pantry}{" "}
-              <img
-                src="https://image.flaticon.com/icons/svg/1345/1345874.svg"
+              <img src="https://image.flaticon.com/icons/svg/1345/1345874.svg"
                 height="15px"
                 width="15px"
                 alt="delete"
-              ></img>{" "}
+              ></img>
             </li>
           ))}
         </aside>
 
-        <div
-          style={{
-            width: "900px",
-            height: "400px",
-            backgroundColor: "#bc7",
-            marginLeft: "20%",
-            borderRadius: "6%",
-            textAlign: "center",
-            overflow: "hidden",
-            overflowY: "scroll"
-          }}
-        >
+
+            {/* Recipe Jumbotron */}
+        <div className={classes.RecipeDiv}>
           <Button
-            style={{
-              position: "relative",
-              marginLeft: "40%",
-              textAlign: "center",
-              fontFamily: "Bradley Hand, cursive",
-              backgroundColor: "#cd9093",
-              borderRadius: "6%",
-              marginRight: "40%",
-              marginTop:"2%"
-            }}
+            // style={{
+            //   position: "relative",
+            //   marginLeft: "40%",
+            //   textAlign: "center",
+            //   fontFamily: "Bradley Hand, cursive",
+            //   backgroundColor: "#cd9093",
+            //   borderRadius: "6%",
+            //   marginRight: "40%",
+            //   marginTop:"2%"
+            // }}
+            className={classes.AddPantryBtn}
             variant="contained"
-            color="primary"
+            // color="primary"
             type="submit"
             onClick={event => {
               this.CurrentPantry(event);
@@ -215,61 +200,47 @@ class Profile extends Component {
           >
             Search Recipes
           </Button>
+
+
           {this.state.recipes.map(recipe => (
-            <RecipeCardComponenet
+            recipe?<RecipeCardComponent
               saveRecipe={this.saveRecipe}
               userID={this.state._id}
               key={recipe.title}
               title={recipe.title}
               image={recipe.image}
               id={recipe.id}
-            />
+            />:null
           ))}
         </div>
-        <div
-          style={{
-            backgroundColor: "#bc7",
-            width: "600px",
-            display: "inline-block",
-            fontFamily: "Bradley Hand, cursive",
-            marginTop: "20%",
-            borderRadius: "6%",
-            marginLeft: "30%"
-          }}
-        >
-          <h3 style={{ textAlign: "center", textDecoration: "underline" }}>
-            Saved Recipes
-          </h3>
+
+
+
+
+        <div  className={classes.SavedJumbo} >
+          <h3>Saved Recipes</h3>
           {this.state.favRecipes.map((favRecipes, i) => (
+            
             <div className="favorite" data-value={favRecipes} key={i}>
-              <img
-                style={{
-                  textAlign: "center",
-                  borderRadius: "10%",
-                  marginLeft: "23%"
-                }}
-                alt="favRecipes"
-                src={favRecipes.image}
-              ></img>
+              <img className={classes.FavRecipeImg} alt="favRecipes" src={favRecipes.image}></img>
               <h4 style={{ textAlign: "center" }}>{favRecipes.title} </h4>
               <br />
               <p style={{ textAlign: "center", margin: "3%" }}>
                 {" "}
                 {favRecipes.recipesInstructions}
               </p>
-              <Button
+              <button
                 onClick={() => {
                   this.onDeleteRecipe(favRecipes.title, i);
                 }}
               >
-                <img
-                  src="https://image.flaticon.com/icons/svg/1345/1345874.svg"
-                  height="50px"
-                  width="50px"
+                <img src="https://image.flaticon.com/icons/svg/1345/1345874.svg"
+                  height="30px"
+                  width="30px"
                   alt="delete"
                 ></img>{" "}
-              </Button>
-              <hr></hr>
+              </button>
+              
             </div>
           ))}
         </div>

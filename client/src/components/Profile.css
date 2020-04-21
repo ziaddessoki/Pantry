@@ -11,3 +11,76 @@ h1{
     font-family: Bradley Hand, cursive;
     font-size: 30pt
 }
+
+.PantryBox{
+    font-family: Bradley Hand, cursive;
+    /* opacity: 0.85; */
+    text-align: center;
+    margin: 15px;
+    width: 20%;
+    float: left;
+    background-color: rgba(187, 204, 119, 0.788);
+    border-radius: 5%;
+    box-shadow: 0 2px 3px #5c5959;
+    border: 1px solid #eee;
+}
+
+.PantryInput{
+    opacity: 1;
+    font-size: 16pt;
+    border-radius: 5%;
+    margin :4%
+};
+
+.AddPantryBtn{
+    background-color: #cd9093;
+    color: yellow;
+    font-family: Bradley Hand, cursive;
+    
+    margin: 2%;
+    border-radius: 6%
+}
+
+
+.PantryList{
+    padding:10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 30px;
+
+}
+
+
+.RecipeDiv{
+    width: 75%;
+    height: 400px;
+    background-color: #bc7;
+    margin: 10px 30px;
+    border-radius: 10px;
+    text-align: center;
+    overflow: scroll;
+    box-shadow: 0 2px 3px #5c5959;
+    border: 1px solid #eee;
+           
+}
+
+
+.SavedJumbo{
+    background-color: #bc7;
+            width: 70%;
+            display: inline-block;
+            font-Family: Bradley Hand, cursive;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 3px #5c5959;
+    border: 1px solid #eee;
+            
+}
+
+
+.FavRecipeImg{
+    text-align: center;
+    border-radius: 10%;
+    float: left;
+
+}

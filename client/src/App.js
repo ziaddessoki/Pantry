@@ -122,7 +122,7 @@ class App extends Component {
 
                 <ButtonToolbar className={classes.ButtonToolbar}>
                    <OverlayTrigger trigger="click" placement='top' overlay={popover(history)} >
-                      <Button className={classes.SignUpBtn} variant="primary">Sign Up</Button>
+                      <Button className={classes.SignUpBtn} >Sign Up</Button>
                     </OverlayTrigger>
                 </ButtonToolbar>
                 </div>

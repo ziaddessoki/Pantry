@@ -4,6 +4,7 @@ import { fireAuth } from "./fireApi";
 const withAuthProtection = redirectRoute => WrappedComponent => {
   class WithAuthProtection extends React.Component {
     componentDidMount() {
+     
       const { history } = this.props;
       if (!fireAuth.currentUser) {
         return history.push(redirectRoute);
