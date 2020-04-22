@@ -66,8 +66,8 @@ class Profile extends Component {
   };
 
   // add to Fav on UI
-  onAdd =()=>{
-    console.log(this.props.recipesInstructions)
+  onAdd =(dd)=>{
+    console.log(dd)
     // let dontMessWithState = new Array(...this.state.favRecipes)
     // dontMessWithState.push(userPantry.newPantry)
   }
@@ -186,7 +186,7 @@ class Profile extends Component {
 
           {this.state.recipesSearchResult.map(recipe => (
             recipe?<RecipeCardComponent
-              saveRecipe={this.saveRecipe}
+              addFav={this.onAdd}
               userID={this.state._id}
               key={recipe.title}
               title={recipe.title}
@@ -212,8 +212,8 @@ class Profile extends Component {
               <button className={classes.FavDelBtn}
                 onClick={() => { this.onDeleteRecipe(favRecipes.title, i)}}>
                 <img src="https://image.flaticon.com/icons/svg/1345/1345874.svg"
-                  height="15px"
-                  width="15px"
+                  height="12px"
+                  width="12px"
                   alt="delete"
                  ></img>{" "}
               </button>

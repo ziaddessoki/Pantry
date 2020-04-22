@@ -66,9 +66,7 @@ class App extends Component {
     console.log(this.state
       )
     const { userFB } = this.state;
-    const email = _.get(userFB, "email");
-    const id = _.get(userFB, "uid");
-    const activeUser = this.state.activeUser;
+   
     
 
 
@@ -132,7 +130,7 @@ class App extends Component {
 
 
           <Route path="/profile" 
-            render={props => (<ProtectedProfile {...props} me={userFB} displayName={email} id={id} activeUser={activeUser}/> )}/>
+            render={props => (<ProtectedProfile {...props} me={userFB} /> )}/>
      
       </BrowserRouter>
       

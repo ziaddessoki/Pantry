@@ -26,6 +26,7 @@ h1{
 }
 
 .PantryInput{
+    width: 70%;
     opacity: 1;
     font-size: 16pt;
     border-radius: 5%;
@@ -47,7 +48,7 @@ h1{
     padding:10px;
     text-align: center;
     display: inline-block;
-    font-size: 30px;
+    font-size: 25px;
 
 }
 
@@ -55,7 +56,7 @@ h1{
 .RecipeDiv{
     width: 75%;
     height: 400px;
-    background-color: #bc7;
+    background-color: rgba(187, 204, 119, 0.701);
     margin: 10px 30px;
     border-radius: 10px;
     text-align: center;
@@ -67,7 +68,7 @@ h1{
 
 
 .SavedJumbo{
-    background-color: #bc7;
+    background-color: rgba(187, 204, 119, 0.678);
             width: 70%;
             /* display: inline-block; */
             font-Family: Bradley Hand, cursive;
@@ -84,7 +85,9 @@ h1{
 }
 
 .Favorite{
-    margin:15px 70px;display:inline-block;
+    padding: 12px;
+    margin:15px 50px;display:inline-block;
+    background-color:white;
     border:1px solid black;
     position: relative;
 }

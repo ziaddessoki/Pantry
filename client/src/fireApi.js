@@ -2,9 +2,9 @@ import firebase from "firebase/app";
 import "firebase/auth";
 
 const config = {
-  apiKey: "AIzaSyBhhESbbxKj1B-E2U1-l8YUmq0rR3yKHys",
-  authDomain: "recipe-app-auth-protection.firebaseapp.com",
-  projectId: "recipe-app-auth-protection"
+  apiKey: "AIzaSyB5PX1_2Er4JynfZaay_j8fFkBoYOWYt84",
+  authDomain: "pantry-2d944.firebaseapp.com",
+  projectId: "pantry-2d944"
 };
 
 const firebaseApp = firebase.initializeApp(config);
