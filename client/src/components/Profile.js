@@ -5,6 +5,7 @@ import RecipeCardComponent from "./RecipeCardComponent";
 import { fireAuth } from "../fireApi";
 import API from '../utils/API';
 import classes from './Profile.css';
+import Footer from './footer'
 
 
 class Profile extends Component {
@@ -27,7 +28,6 @@ class Profile extends Component {
 
   componentDidMount() {
     fireAuth.onAuthStateChanged(currentUser => {
-      console.log(currentUser)
      this.setState({ fire : currentUser, fBaseId:currentUser.uid })
      API.getUser(currentUser.uid)
       .then(userDB => {
@@ -36,8 +36,7 @@ class Profile extends Component {
           _id:userDB.data._id,
           pantry:userDB.data.pantry,
           favRecipes:userDB.data.favRecipes },
-        console.log(userDB),)});
-      console.log(this.state.activeUser)
+        )});
       // .catch(err =>console.log(err));
     })
     
@@ -221,6 +220,7 @@ class Profile extends Component {
             </div>
           ))}
         </div>
+        <Footer/>
       </React.Fragment>
     );
   }

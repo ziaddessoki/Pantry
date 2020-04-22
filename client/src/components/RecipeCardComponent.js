@@ -26,18 +26,17 @@ const RecipeCardComponent = ({ title, image, id, userID,addFav }) => {
     const getSearch = e => {
         e.preventDefault();
         setQuery(e.target.value);
+
         handleShow();
     }
 
     const saveRecipe = () => {
-
-        
-        
-        
-        
-
+        console.log(query)
+        console.log(recipesInstructions.title)
+        console.log(recipesInstructions.image)
+        console.log(recipesInstructions.instructions)
         API.addFav(userID, {favRecipes:{
-            title: title,
+            title: recipesInstructions.title,
             image: image,
             recipesInstructions:recipesInstructions.instructions,
 

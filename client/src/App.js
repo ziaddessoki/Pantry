@@ -16,7 +16,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Footer from './components/footer'
+
 
 
 const ProtectedProfile = withAuthProtection("/login")(Profile);
@@ -26,7 +26,8 @@ class App extends Component {
     
    state = {
       userFB: "",
-      activeUser: null
+      activeUser: null,
+      newUid:''
     };
   
   
@@ -34,8 +35,7 @@ class App extends Component {
     fireAuth.onAuthStateChanged(currentUser => {
      this.setState({ userFB : currentUser })
      API.getUser(currentUser.uid)
-      .then(userDB => {this.setState({ activeUser: userDB.data },console.log(userDB),)});
-      console.log(this.state.activeUser)
+      .then(userDB => {this.setState({ activeUser: userDB.data })})
       .catch(err =>console.log(err));
     })
     
@@ -48,14 +48,15 @@ class App extends Component {
   };
 
   handleSignUp = history => (email, password) => {
-    fireAuth.createUserWithEmailAndPassword(email, password)
-    .catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        
-      });
-    return history.push("/profile");
+   fireAuth.createUserWithEmailAndPassword(email, password)
+      .then(user=>{API.saveUser({ email: email, fBaseId: user.user.uid})})
+      .catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.log(errorCode,errorMessage)
+        })
+   return history.push("/profile");
   };
 
   onLogOut() {
@@ -63,14 +64,8 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state
-      )
     const { userFB } = this.state;
-   
-    
-
-
-    //logOut hide/show
+   //logOut hide/show
     let logoutButton = null;
      if (this.state.activeUser){
       logoutButton =
@@ -95,7 +90,7 @@ class App extends Component {
     return (
       <BrowserRouter>
 
-        <Navbar expand="lg" style={{ backgroundColor: "#cd9093" }}>
+        <Navbar expand="lg" style={{ backgroundColor: "#cd9093",width:'100%' }}>
 
           <Navbar.Brand className={classes.NavIcon} href="/" > Pantry </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
