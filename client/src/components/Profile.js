@@ -64,6 +64,7 @@ class Profile extends Component {
       .catch(err => console.log(err));
   };
 
+  
   // add to Fav on UI
   onAdd =(recipe)=>{
     console.log(recipe)
