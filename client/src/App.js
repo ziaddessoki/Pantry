@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import _ from "lodash";
+// import _ from "lodash";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import classes from "./App.css";
 import Home from "./components/Home";
@@ -90,7 +90,7 @@ class App extends Component {
     return (
       <BrowserRouter>
 
-        <Navbar expand="lg" style={{ backgroundColor: "#cd9093",width:'100%' }}>
+        <Navbar expand="lg" style={{ backgroundColor: "#cd9093",height:"60px" }}>
 
           <Navbar.Brand className={classes.NavIcon} href="/" > Pantry </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

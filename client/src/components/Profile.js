@@ -65,10 +65,11 @@ class Profile extends Component {
   };
 
   // add to Fav on UI
-  onAdd =(dd)=>{
-    console.log(dd)
-    // let dontMessWithState = new Array(...this.state.favRecipes)
-    // dontMessWithState.push(userPantry.newPantry)
+  onAdd =(recipe)=>{
+    console.log(recipe)
+    let newFavRecipeUI = new Array(...this.state.favRecipes)
+    newFavRecipeUI.push(recipe)
+    this.setState({ favRecipes: newFavRecipeUI })
   }
 
   // Deleting from Pantry
@@ -114,7 +115,7 @@ class Profile extends Component {
         <h5 style={{ textAlign: "center" }}>fireBase ID:{this.state.fire.uid}</h5>
         
         
-
+      {/* pantry add and display */}
         <aside className={classes.PantryBox}>
           <form onSubmit={this.onSubmit}>
             <input value={this.state.value}
@@ -125,15 +126,14 @@ class Profile extends Component {
               placeholder="Add to pantry"
             />
             <Button 
-            className={classes.AddPantryBtn} 
+            // className={classes.AddPantryBtn} 
             type="submit"  
-            // variant="primary"
-              // style={{
-              //   fontFamily: "Bradley Hand, cursive",
-              //   backgroundColor: "#cd9093",
-              //   marginTop: "2%",
-              //   borderRadius: "6%"
-              // }}
+            variant="dark"
+              style={{
+                fontFamily: "Bradley Hand, cursive",
+                backgroundColor: "#cd9093",
+                margin: "2% auto",
+              }}
             >
               Add Ingredient
             </Button>
@@ -142,9 +142,15 @@ class Profile extends Component {
 
           {/* displaying Pantry */}
           <h3> Current Pantry: </h3>
+          <ul 
+          // style={{listStyleType: "none",
+          //   margin: "5px auto",
+          //   padding: "0"}}
+          className={classes.UnorderedList}
+          >
           {this.state.pantry.map((pantry, i) => (
-            <li className={classes.PantryList} data-value={pantry} key={i}
-              >
+            
+            <li className={classes.PantryList} data-value={pantry} key={i}>
               {pantry}{" "}
               <img onClick={() => { this.onDeleteItem(pantry, i) }}
               src="https://image.flaticon.com/icons/svg/1345/1345874.svg"
@@ -153,45 +159,36 @@ class Profile extends Component {
                 alt="delete"
               ></img>
             </li>
-          ))}
+            
+          ))}</ul>
         </aside>
 
 
             {/* Recipe Jumbotron */}
         <div className={classes.RecipeDiv}>
           <Button
-            // style={{
-            //   position: "relative",
-            //   marginLeft: "40%",
-            //   textAlign: "center",
-            //   fontFamily: "Bradley Hand, cursive",
-            //   backgroundColor: "#cd9093",
-            //   borderRadius: "6%",
-            //   marginRight: "40%",
-            //   marginTop:"2%"
-            // }}
-            className={classes.AddPantryBtn}
-            variant="dark"
-            // variant="contained"
-            // color="primary"
-            type="submit"
-            onClick={event => {
-              this.CurrentPantry(event);
+            style={{
+              margin: "25px auto",
+              textAlign: "center",
+              fontFamily: "Bradley Hand, cursive",
+              backgroundColor: "#cd9093",
             }}
-          >
-            Search Recipes
-          </Button>
+            variant="dark"
+            type="submit"
+            onClick={event => {this.CurrentPantry(event);}}>Search Recipes</Button>
 
+
+            <br/>
 
           {this.state.recipesSearchResult.map(recipe => (
             recipe?<RecipeCardComponent
-              addFav={this.onAdd}
+              addFavOnUI={this.onAdd}
               userID={this.state._id}
               key={recipe.title}
               title={recipe.title}
               image={recipe.image}
               id={recipe.id}
-            />:null
+            />:<p className={classes.CardAlt}>Look Up and Save Delicious Recipes!!</p>
           ))}
         </div>
 

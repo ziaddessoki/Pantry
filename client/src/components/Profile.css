@@ -23,6 +23,8 @@ h1{
     border-radius: 5%;
     box-shadow: 0 2px 3px #5c5959;
     border: 1px solid #eee;
+    height: 400px;
+    overflow: scroll;
 }
 
 .PantryInput{
@@ -33,7 +35,7 @@ h1{
     margin :4%
 };
 
-.AddPantryBtn{
+/* .AddPantryBtn{
     position: relative;
     background-color: #cd9093;
     color: yellow;
@@ -41,20 +43,32 @@ h1{
     
     margin: 100%;
     border-radius: 6%
+} */
+
+.UnorderedList{
+    /* list-style-type: none; */
+    margin: 5px auto;
+    padding: 0;
+    
 }
-
-
 .PantryList{
-    padding:10px;
+    margin: 2px;
+    padding:3px;
     text-align: center;
     display: inline-block;
-    font-size: 25px;
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: white;
+
+    
 
 }
 
 
 .RecipeDiv{
-    width: 75%;
+    position: relative;
+    width: 60%;
     height: 400px;
     background-color: rgba(187, 204, 119, 0.701);
     margin: 10px 30px;
@@ -64,6 +78,12 @@ h1{
     box-shadow: 0 2px 3px #5c5959;
     border: 1px solid #eee;
            
+}
+
+.CardAlt{
+    font-size: 30px;
+    font-weight: 600;
+    margin: 100px auto;
 }
 
 

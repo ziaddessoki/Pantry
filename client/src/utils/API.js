@@ -23,7 +23,7 @@ export default {
   },
 
   addFav: function(id,newFav) {
-    return axios.post("/user/addFav/"+id,newFav);
+    return axios.post("/user/addFav/"+id, newFav);
   },
 
   deletePantry: function(id, newPantry){

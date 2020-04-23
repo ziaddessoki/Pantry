@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Card, Modal } from "react-bootstrap";
 import InstructionsComponent from "./InstructionsComponent";
 import API from '../utils/API';
 
 
 
-const RecipeCardComponent = ({ title, image, id, userID,addFav }) => {
+const RecipeCardComponent = ({ title, image, id, userID,addFavOnUI }) => {
     const [recipesInstructions, setRecipeInstructions] = useState([])
     const [query, setQuery] = useState('')
     const [show, setShow] = useState(false);
@@ -13,20 +13,22 @@ const RecipeCardComponent = ({ title, image, id, userID,addFav }) => {
     const handleShow = () => setShow(true);
     // const API_KEY = process.env.REACT_APP_SPOONACULAR_API_KEY;
 
-    useEffect(() => { getRecipesInstructions() }, [query]);
+    // useEffect(() => { getRecipesInstructions() }, [query]);
 
-    const getRecipesInstructions = async () => {
-        const response = await fetch(`https://api.spoonacular.com/recipes/${query}/information?includeNutrition=false&apiKey=033ca393208146a0977e6ee214636992
-        `);
-        const data = await response.json();
-        setRecipeInstructions(data);
-        console.log(response);
-    }
+    // const getRecipesInstructions = async () => {
+    //     const response = await fetch(`https://api.spoonacular.com/recipes/${query}/information?includeNutrition=false&apiKey=033ca393208146a0977e6ee214636992`);
+    //     const data = await response.json();
+    //     setRecipeInstructions(data);
+    //     console.log(data);
+    // }
 
-    const getSearch = e => {
+    const getSearch = async e => {
         e.preventDefault();
         setQuery(e.target.value);
-
+        const newQuery = e.target.value
+        const response = await fetch(`https://api.spoonacular.com/recipes/${newQuery}/information?includeNutrition=false&apiKey=033ca393208146a0977e6ee214636992`);
+        const data = await response.json();
+        setRecipeInstructions(data);
         handleShow();
     }
 
@@ -35,13 +37,17 @@ const RecipeCardComponent = ({ title, image, id, userID,addFav }) => {
         console.log(recipesInstructions.title)
         console.log(recipesInstructions.image)
         console.log(recipesInstructions.instructions)
-        API.addFav(userID, {favRecipes:{
+        const newFavRecipe = {
             title: recipesInstructions.title,
             image: image,
             recipesInstructions:recipesInstructions.instructions,
 
-        }})
-        .then(window.location = "/profile").catch(err => console.log(err));
+        }
+        
+        API.addFav(userID, {favRecipes: newFavRecipe})
+        .then( user =>{console.log(user)}).catch(err => console.log(err));
+        addFavOnUI(newFavRecipe)
+        handleClose()
         console.log(userID)
         console.log(recipesInstructions.instructions)
     } 

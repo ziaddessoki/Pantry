@@ -16,6 +16,8 @@
       
 }
 
+.Icon:hover{text-decoration: none;color: white;}
+
 .ButtonToolbar{
   margin: 10px;
   font-family: Bradley Hand, cursive;
