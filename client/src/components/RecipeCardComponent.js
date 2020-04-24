@@ -54,22 +54,23 @@ const RecipeCardComponent = ({ title, image, id, userID,addFavOnUI }) => {
 
 
     return (
-            <Card style={{ width: '18rem', backgroundColor:'#cd9093',margin:"1%", display:"inline-block", textAlign:"center"}}>
+            <Card style={{ width: '18rem', backgroundColor:'#cd9093',margin:"1%", display:"inline-block", textAlign:"center",boxShadow:" 0 2px 3px #5c5959",
+            border: "1px solid #eee"}}>
                 <Card.Img variant="top" src={image} />
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
                     
-                    <Button onClick={getSearch} value={id} 
-                    style={{backgroundColor:'#bc7',color:'black',fontFamily: "Bradley Hand, cursive"}} >
+                    <Button onClick={getSearch} value={id} variant="dark"
+                    style={{backgroundColor:'white',fontFamily: "'Cairo', sans-serif"}} >
                         Get Recipe Instructions</Button>
                 </Card.Body>
 
-                <Modal show={show} onHide={handleClose} style={{color:'black',fontFamily: "Bradley Hand, cursive"}}>
+                <Modal show={show} onHide={handleClose} style={{color:'black',fontFamily: "'Cairo', sans-serif"}}>
                     <Modal.Header closeButton>
                         <Modal.Title >Instructions for: {title}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <InstructionsComponent style={{backgroundColor:'#bc7',color:'black',fontFamily: "Bradley Hand, cursive"}}
+                        <InstructionsComponent style={{backgroundColor:'#bc7',color:'black',fontFamily: "'Cairo', sans-serif"}}
                          instructions={recipesInstructions.instructions} />
                     </Modal.Body>
                     <Modal.Footer>
@@ -77,7 +78,7 @@ const RecipeCardComponent = ({ title, image, id, userID,addFavOnUI }) => {
                             Close
           </Button>
                         <Button variant="primary" onClick={saveRecipe }>
-                            Save Recipe
+                        <i class="far fa-save fa-sm"></i>
           </Button>
                     </Modal.Footer>
                 </Modal>

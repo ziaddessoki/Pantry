@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
 import RecipeCardComponent from "./RecipeCardComponent";
-
+import Spinner from 'react-bootstrap/Spinner'
 import { fireAuth } from "../fireApi";
 import API from '../utils/API';
 import classes from './Profile.css';
@@ -64,7 +64,7 @@ class Profile extends Component {
       .catch(err => console.log(err));
   };
 
-  
+
   // add to Fav on UI
   onAdd =(recipe)=>{
     console.log(recipe)
@@ -111,7 +111,7 @@ class Profile extends Component {
     
     return (
       <React.Fragment>
-        <h1 className={classes.Testing}> Welcome {this.state.fire.email}!</h1>
+        <h1 className={classes.Testing}> Welcome {this.state.fire.email?this.state.fire.email.split("@",1):null}!</h1>
         <h5 style={{ textAlign: "center" }}>Mongo ID:{this.state.dbdb._id}</h5>
         <h5 style={{ textAlign: "center" }}>fireBase ID:{this.state.fire.uid}</h5>
         
@@ -131,35 +131,29 @@ class Profile extends Component {
             type="submit"  
             variant="dark"
               style={{
-                fontFamily: "Bradley Hand, cursive",
+                fontWeight:"900",
+                borderRadius:"50%",
+                fontFamily: "'Cairo', sans-serif",
                 backgroundColor: "#cd9093",
                 margin: "2% auto",
-              }}
-            >
-              Add Ingredient
-            </Button>
+              }}> + </Button>
           </form>
 
 
           {/* displaying Pantry */}
           <h3> Current Pantry: </h3>
           <ul 
-          // style={{listStyleType: "none",
-          //   margin: "5px auto",
-          //   padding: "0"}}
-          className={classes.UnorderedList}
+          style={{listStyleType: "none",
+            margin: "5px auto",
+            padding: "0"}}
+          // className={classes.UnorderedList}
           >
           {this.state.pantry.map((pantry, i) => (
-            
-            <li className={classes.PantryList} data-value={pantry} key={i}>
+            pantry? <li className={classes.PantryList} data-value={pantry} key={i}>
               {pantry}{" "}
-              <img onClick={() => { this.onDeleteItem(pantry, i) }}
-              src="https://image.flaticon.com/icons/svg/1345/1345874.svg"
-                height="15px"
-                width="15px"
-                alt="delete"
-              ></img>
-            </li>
+              <i class="fas fa-times fa-xs" style={{color:"red"}}></i>
+             </li>: 
+              <Spinner animation="border" />
             
           ))}</ul>
         </aside>
@@ -171,7 +165,7 @@ class Profile extends Component {
             style={{
               margin: "25px auto",
               textAlign: "center",
-              fontFamily: "Bradley Hand, cursive",
+              fontFamily: "'Cairo', sans-serif",
               backgroundColor: "#cd9093",
             }}
             variant="dark"

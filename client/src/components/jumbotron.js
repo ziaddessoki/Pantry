@@ -8,18 +8,20 @@ function Jumbo() {
     <div>
       <Jumbotron
         style={{
-          width: "900px",
+          width: "80%",
           height: "400px",
-          backgroundColor: "#bc7",
-          borderRadius: "6%",
-          marginTop: "8%",
-          marginLeft: "18%"
+          backgroundColor: " rgba(107, 170, 117, 0.751)",
+          borderRadius: "10%",
+          margin:'8% auto',
+          position:"relevant"
         }}
       >
-        <h1 style={{ fontFamily: "Bradley Hand, cursive", fontSize: "30pt" }}>
+        <h1 style={{ fontFamily: "'Cairo', sans-serif", fontSize: "30pt" ,color:"white"}}>
           Welcome to Pantry!
         </h1>
-        <p style={{ fontFamily: "Bradley Hand, cursive", fontSize: "16pt" }}>
+        <p style={{ fontFamily: "'Cairo', sans-serif", fontSize: "14pt",position:"absolute",color:"white",
+            top:"43%",
+            left:"12%" }}>
           Life is hectic.Pantry is a customizable cooking <br/> experience that allows
           our users to make delicious <br/> food without too much thought. Pantry
           provides <br/> access to hundreds of recipes depending on the <br/> groceries you
@@ -32,8 +34,11 @@ function Jumbo() {
           alt=""
           width="350px"
           style={{
-            marginLeft: "490px",
-            marginTop: "-400px",
+            position:"absolute",
+            top:"32%",
+            right:"12%",
+            // marginLeft: "490px",
+            // marginTop: "-400px",
             borderRadius: "10%"
           }}
         />

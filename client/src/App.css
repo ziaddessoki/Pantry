@@ -3,12 +3,12 @@
 }
 
 .NavIcon{
-  font-family: Bradley Hand, cursive;
+  font-family: 'Libre Barcode 39 Text', cursive;;
    font-size: 30pt;
 }
 
 .Icon{
-      font-family: Bradley Hand, cursive;
+      font-family: 'Cairo', sans-serif;
       font-size: 18pt;
       text-decoration-color: #bc7;
       color: black;
@@ -20,18 +20,20 @@
 
 .ButtonToolbar{
   margin: 10px;
-  font-family: Bradley Hand, cursive;
+  font-family: 'Cairo', sans-serif;
   padding:10px
 }
 
 .SignUpBtn{
   align-items: center;
   background-color: #cd9093;
-  font-family: Bradley Hand, cursive;
+  font-family: 'Cairo', sans-serif;
   margin: auto;
   width:300px;
   color:white;
   border: 1px solid black;
+  box-shadow: 0 2px 3px #5c5959;
+    border: 1px solid #eee;
  
 }
 

@@ -35,7 +35,7 @@ class LoginForm extends React.Component {
     const { email, password, submitting } = this.state;
     return (
       <React.Fragment>
-        <Typography variant="h5" style={{textAlign:"center",  fontFamily:"Bradley Hand, cursive", fontSize:"20pt", marginTop:"12%", }}>
+        <Typography variant="h5" style={{textAlign:"center",  fontFamily: "'Cairo', sans-serif",fontWeight:"600", fontSize:"20pt", margin:"7% auto", }}>
           Please Login or Create A New Account
         </Typography>
         <form
@@ -43,7 +43,7 @@ class LoginForm extends React.Component {
             display: "flex",
             flexDirection: "column",
             width: "400px",
-            backgroundColor: "#bc7",
+            backgroundColor: "rgba(107, 170, 117, 0.788)",
             borderRadius: "6%",
             margin:'auto',
             // marginTop:"12%",
@@ -73,12 +73,12 @@ class LoginForm extends React.Component {
           
           <Button
           style={{
-            fontFamily:"Bradley Hand, cursive", fontSize:"16pt",
+            fontFamily: "'Cairo', sans-serif", fontSize:"16pt",
             backgroundColor: "#cd9093",
             marginBottom:"3%",
             marginLeft:"12%",
             width:"300px",
-           
+            color:"white"
 
            }}
             type={"submit"}
@@ -91,7 +91,7 @@ class LoginForm extends React.Component {
                 size={16}
               />
             ) : (
-              "Login"
+              "Log In"
             )}
           </Button>
        

@@ -8,19 +8,20 @@ h1{
 .Testing{
     text-align: center;
     margin-top: 2%;
-    font-family: Bradley Hand, cursive;
-    font-size: 30pt
+    font-family: 'Cairo', sans-serif;
+    font-size: 30pt;
+    text-transform: capitalize
 }
 
 .PantryBox{
-    font-family: Bradley Hand, cursive;
+    font-family: 'Cairo', sans-serif;
     /* opacity: 0.85; */
     text-align: center;
-    margin: 15px;
+    margin: 19px 15px;
     width: 20%;
     float: left;
-    background-color: rgba(187, 204, 119, 0.788);
-    border-radius: 5%;
+    background-color: rgba(107, 170, 117, 0.788);
+    border-radius: 8px;
     box-shadow: 0 2px 3px #5c5959;
     border: 1px solid #eee;
     height: 400px;
@@ -39,7 +40,7 @@ h1{
     position: relative;
     background-color: #cd9093;
     color: yellow;
-    font-family: Bradley Hand, cursive;
+    font-family: 'Cairo', sans-serif;
     
     margin: 100%;
     border-radius: 6%
@@ -59,8 +60,9 @@ h1{
     font-size: 20px;
     border: 1px solid black;
     border-radius: 4px;
-    background-color: white;
-
+    background-color: rgb(59, 57, 57);
+    color: white;
+    text-transform: capitalize
     
 
 }
@@ -68,15 +70,16 @@ h1{
 
 .RecipeDiv{
     position: relative;
-    width: 60%;
+    width: 70%;
     height: 400px;
-    background-color: rgba(187, 204, 119, 0.701);
-    margin: 10px 30px;
+    background-color: rgba(107, 170, 117, 0.781);
+    margin: 15px ;
     border-radius: 10px;
     text-align: center;
     overflow: scroll;
     box-shadow: 0 2px 3px #5c5959;
     border: 1px solid #eee;
+    float: left;
            
 }
 
@@ -84,14 +87,16 @@ h1{
     font-size: 30px;
     font-weight: 600;
     margin: 100px auto;
+    font-family: 'Bungee Shade', cursive;
 }
 
 
 .SavedJumbo{
-    background-color: rgba(187, 204, 119, 0.678);
+    clear: both;
+    background-color: rgba(107, 170, 117, 0.778);
             width: 70%;
             /* display: inline-block; */
-            font-Family: Bradley Hand, cursive;
+            font-family: 'Cairo', sans-serif;
             padding: 15px ;
             margin: 20px auto;
             display: flexbox;
