@@ -61,7 +61,7 @@ const RecipeCardComponent = ({ title, image, id, userID,addFavOnUI }) => {
                     <Card.Title>{title}</Card.Title>
                     
                     <Button onClick={getSearch} value={id} variant="dark"
-                    style={{backgroundColor:'white',fontFamily: "'Cairo', sans-serif"}} >
+                    style={{backgroundColor:'white',color:'black',fontFamily: "'Cairo', sans-serif"}} >
                         Get Recipe Instructions</Button>
                 </Card.Body>
 

@@ -151,7 +151,7 @@ class Profile extends Component {
           {this.state.pantry.map((pantry, i) => (
             pantry? <li className={classes.PantryList} data-value={pantry} key={i}>
               {pantry}{" "}
-              <i class="fas fa-times fa-xs" style={{color:"red"}}></i>
+              <i onClick={() => {this.onDeleteItem(pantry, i)}} className="fas fa-times fa-xs" style={{color:"red"}}></i>
              </li>: 
               <Spinner animation="border" />
             
