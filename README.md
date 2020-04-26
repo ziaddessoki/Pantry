@@ -6,6 +6,15 @@ Link To Deployed Heroku Site:
 ## Summary
 Pantry is a MERN stack web aplication, that allows its users create a profile and Login/Logout using firebase. Once logged in users are able to add ingredients to their "pantry". Using Spoonaculars's API recipes are then shown to the user based on the ingredients in their "pantry". Recipes are able to be saved, and displayed under the "Saved Recipes" section.
 
+
+
+## Instructions
+- Sign-Up
+- Add whatever ingredients you have to the pantry list
+- Click "Search" to look up recipes with your ingredients
+- you can view the instructions
+- You can also save these instructions to your account to view later
+
 <br/>Home Page <br/> ![Login](././client/src/images/home.png)
 <br/>Login Page <br/> ![Login](././client/src/images/Log-in.png) 
 
@@ -27,6 +36,11 @@ Pantry is a MERN stack web aplication, that allows its users create a profile an
 - Firebase
 - Heroku
  
+
+## Future Development
+
+-Barcode scanning
+-Mobile app
  
  
 
