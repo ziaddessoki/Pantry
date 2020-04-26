@@ -15,11 +15,11 @@ Pantry is a MERN stack web aplication, that allows its users create a profile an
 - you can view the instructions
 - You can also save these instructions to your account to view later
 
-<br/>Home Page <br/> ![Login](././client/src/images/home.png)
-<br/>Login Page <br/> ![Login](././client/src/images/Log-in.png) 
+<br/><strong>Home Page </strong><br/> ![Login](././client/src/images/home.png)
+<br/><strong>Login Page</strong> <br/> ![Login](././client/src/images/Log-in.png) 
 
-<br/>User's Pantry <br/> ![Login](././client/src/images/search.png)
-<br/>User's Saved Recipe <br/> ![Login](././client/src/images/Saved.png)
+<br/><strong>User's Pantry </strong> <br/> ![Login](././client/src/images/search.png)
+<br/><strong>User's Saved Recipe </strong> <br/> ![Login](././client/src/images/Saved.png)
 
 
 
