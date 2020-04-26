@@ -39,7 +39,7 @@ Pantry is a MERN stack web aplication, that allows its users create a profile an
 
 ## Future Development
 
--Barcode scanning
+-Barcode scanning<br/>
 -Mobile app
  
  
