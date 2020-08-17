@@ -1,23 +1,27 @@
 {
   "files": {
-    "main.css": "/finalproject3/static/css/main.0cd814ab.chunk.css",
-    "main.js": "/finalproject3/static/js/main.6cf433b4.chunk.js",
-    "main.js.map": "/finalproject3/static/js/main.6cf433b4.chunk.js.map",
-    "runtime-main.js": "/finalproject3/static/js/runtime-main.61b1ed58.js",
-    "runtime-main.js.map": "/finalproject3/static/js/runtime-main.61b1ed58.js.map",
-    "static/js/2.17f30253.chunk.js": "/finalproject3/static/js/2.17f30253.chunk.js",
-    "static/js/2.17f30253.chunk.js.map": "/finalproject3/static/js/2.17f30253.chunk.js.map",
-    "index.html": "/finalproject3/index.html",
-    "precache-manifest.458b3f4afb6e8eeeed9f52def63776b5.js": "/finalproject3/precache-manifest.458b3f4afb6e8eeeed9f52def63776b5.js",
-    "service-worker.js": "/finalproject3/service-worker.js",
-    "static/css/main.0cd814ab.chunk.css.map": "/finalproject3/static/css/main.0cd814ab.chunk.css.map",
-    "static/js/2.17f30253.chunk.js.LICENSE.txt": "/finalproject3/static/js/2.17f30253.chunk.js.LICENSE.txt",
-    "static/media/jumbo.png": "/finalproject3/static/media/jumbo.91a3b564.png"
+    "main.css": "/ziaddessoki/Pantry.git/static/css/main.9a7d1044.chunk.css",
+    "main.js": "/ziaddessoki/Pantry.git/static/js/main.4780b3f7.chunk.js",
+    "main.js.map": "/ziaddessoki/Pantry.git/static/js/main.4780b3f7.chunk.js.map",
+    "runtime-main.js": "/ziaddessoki/Pantry.git/static/js/runtime-main.47a074ff.js",
+    "runtime-main.js.map": "/ziaddessoki/Pantry.git/static/js/runtime-main.47a074ff.js.map",
+    "static/css/2.b04aa62b.chunk.css": "/ziaddessoki/Pantry.git/static/css/2.b04aa62b.chunk.css",
+    "static/js/2.249d1487.chunk.js": "/ziaddessoki/Pantry.git/static/js/2.249d1487.chunk.js",
+    "static/js/2.249d1487.chunk.js.map": "/ziaddessoki/Pantry.git/static/js/2.249d1487.chunk.js.map",
+    "index.html": "/ziaddessoki/Pantry.git/index.html",
+    "precache-manifest.f36b6c45d9e3c0143d3f108559330923.js": "/ziaddessoki/Pantry.git/precache-manifest.f36b6c45d9e3c0143d3f108559330923.js",
+    "service-worker.js": "/ziaddessoki/Pantry.git/service-worker.js",
+    "static/css/2.b04aa62b.chunk.css.map": "/ziaddessoki/Pantry.git/static/css/2.b04aa62b.chunk.css.map",
+    "static/css/main.9a7d1044.chunk.css.map": "/ziaddessoki/Pantry.git/static/css/main.9a7d1044.chunk.css.map",
+    "static/js/2.249d1487.chunk.js.LICENSE.txt": "/ziaddessoki/Pantry.git/static/js/2.249d1487.chunk.js.LICENSE.txt",
+    "static/media/font-awesome.min.css": "/ziaddessoki/Pantry.git/static/media/fontawesome-webfont.fee66e71.woff",
+    "static/media/jumbo.png": "/ziaddessoki/Pantry.git/static/media/jumbo.91a3b564.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.61b1ed58.js",
-    "static/js/2.17f30253.chunk.js",
-    "static/css/main.0cd814ab.chunk.css",
-    "static/js/main.6cf433b4.chunk.js"
+    "static/js/runtime-main.47a074ff.js",
+    "static/css/2.b04aa62b.chunk.css",
+    "static/js/2.249d1487.chunk.js",
+    "static/css/main.9a7d1044.chunk.css",
+    "static/js/main.4780b3f7.chunk.js"
   ]
 }
